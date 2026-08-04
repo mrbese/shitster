@@ -83,6 +83,24 @@ app.innerHTML = `
     </section>
 
     <section>
+      <h2>There is no off switch.</h2>
+      <p>
+        We checked, so you do not have to. The marketing toggles in the My BMW
+        app and the iDrive privacy menus govern email, mail, and push
+        notifications, not the Control Display. No BMW document describes a way
+        to disable in-car promotional banners. When a reporter asked BMW
+        directly whether owners could opt out, the spokesperson did not answer.
+        A company that calls a promotion optional, asked how to decline the
+        next one, went quiet. That is what the notice of dispute is for.
+      </p>
+      <p>
+        One open question matters here: nobody has documented whether owners
+        who had already switched off every marketing consent still received
+        the banner. If that was you, your letter should say so.
+      </p>
+    </section>
+
+    <section>
       <h2>The legal basis, in plain terms.</h2>
       <p>
         Three things BMW did, and what each one gives an owner to work with.
@@ -126,6 +144,41 @@ app.innerHTML = `
         connected dashboard. NHTSA's driver-distraction guidelines advise
         against exactly this kind of startup-moment visual bait. Those cases
         are agencies' to bring. The notice is yours.
+      </p>
+    </section>
+
+    <section>
+      <h2>We are playing their game.</h2>
+      <p>
+        The word salad is deliberate. Call it a Festive App and maybe it is not
+        marketing. Call it a partnership and maybe nobody "sold" anything. This
+        is loophole engineering, and it has been practiced on consumers at
+        scale for decades: the arbitration clause, the class waiver, the
+        pre-expired opt-out window, the batch discount. shitster's answer is
+        not to complain about the game from outside it. It is to read the
+        rulebook they wrote and play it back.
+      </p>
+      <p>
+        Example. The individual conference requirement in Section 30.A, the
+        obligation to "personally meet and confer" with every owner
+        separately, no shared conferences allowed, is new in the January 2026
+        revision of the Terms. It did not exist in the October 2023 version.
+        We cannot read minds, but we can read drafting, and this drafting has
+        one evident purpose: to prevent pooled attacks, to make sure no law
+        firm can herd ten thousand claims through one phone call, to atomize
+        any crowd back into individuals. Fine. Atomized is exactly how we
+        arrive: one owner, one certified letter, one conference, times
+        everyone who is angry. The clause they wrote to make collective action
+        slow now obligates them to take every one of those calls.
+      </p>
+      <p>
+        They did not sell the screen. They swapped it. To swap something you
+        first have to decide what it is worth, and BMW decided what its
+        customers' private space was worth: one movie placement. The
+        compensation was not cash; a placement is non-cash material
+        compensation, the kind accounting standards and the FTC's endorsement
+        rules have recognized as payment for decades. Their words, their
+        contract, their game. We are finally playing it too.
       </p>
     </section>
 
