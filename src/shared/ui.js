@@ -21,6 +21,11 @@ export function mountChrome() {
     You act in your own name, at your own judgment, for your own claim.</p>
   `
   document.body.append(footer)
+
+  const rantbar = document.createElement('div')
+  rantbar.className = 'rantbar'
+  rantbar.textContent = "I'm not a lawyer, not legal advice, just a personal rant. DashOff or fuck off."
+  document.body.append(rantbar)
 }
 
 // Triggers a browser download of in-memory bytes via a temporary object URL.

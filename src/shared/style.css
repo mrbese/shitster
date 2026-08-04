@@ -17,6 +17,10 @@
 body {
   margin: 0; background: var(--paper); color: var(--ink);
   font-family: var(--serifless); line-height: 1.6; font-size: 1.0625rem;
+  padding-bottom: 3.25rem;
+}
+@media (max-width: 480px) {
+  body { padding-bottom: 4.5rem; }
 }
 main { max-width: var(--max); margin: 0 auto; padding: 2rem 1.25rem 6rem; }
 h1, h2, h3 { line-height: 1.15; letter-spacing: -0.015em; }
@@ -49,6 +53,12 @@ footer.site {
   max-width: var(--max); margin: 0 auto; padding: 2rem 1.25rem;
   border-top: 1px solid var(--line); font-family: var(--mono);
   font-size: 0.8rem; color: var(--muted);
+}
+.rantbar {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
+  background: var(--paper); border-top: 2px solid var(--accent);
+  font-family: var(--mono); font-size: 0.75rem; text-align: center;
+  padding: 0.45rem 1rem; color: var(--ink);
 }
 @media (prefers-reduced-motion: no-preference) {
   button, .btn, a { transition: opacity 120ms ease; }

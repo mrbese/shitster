@@ -16,6 +16,9 @@ Every builder agent must read this file first. Deviating from the FACTS section 
 - Direct, plain, factual tone. No legalese in UI copy, no hype, no exclamation marks.
 - Every tool page carries this disclaimer block (verbatim, in a `.disclaimer` div):
   "This is a self-help template, not legal advice, and no attorney-client relationship exists. You are acting individually, in your own name. Read what you sign. If your situation is unusual, talk to a lawyer."
+- Site footers/chrome carry a verbatim personal-rant line, first person. Two variants, each pinned to its own site, never swapped:
+  - DashOff: lives in a fixed, always-visible bottom bar (`.rantbar`, injected by `mountChrome()` in `src/shared/ui.js`, styled in `src/shared/style.css`), NOT in the scroll-to footer: "I'm not a lawyer, not legal advice, just a personal rant. DashOff or fuck off."
+  - shitster.org umbrella (`umbrella/index.html` footer, opens the footer paragraph before the operative disclaimer sentences): "Not legal advice. I'm not a lawyer. It's just a personal rant."
 
 ## FACTS: BMW ConnectedDrive Terms, US, Rev. 2026-01-01
 
