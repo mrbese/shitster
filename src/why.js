@@ -194,16 +194,17 @@ app.innerHTML = `
           individual conference is not.
         </p>
         <p>
-          Run the arithmetic on the batches. One hundred demands per batch, one
-          set of filing fees per batch. Harm 90 people: one batch. Harm 190:
-          two. In between, nothing moves. The 101st person BMW wrongs costs it
-          a new set of fees, and persons 102 through 200 cost it nothing at
-          all. Under this clause, the marginal price of wronging another
-          hundred people is zero. Sharper still: a hundred owners who each
-          arbitrated alone would cost BMW a hundred sets of fees. The same
-          hundred, batched under Section 30.D, cost one. The crowd itself is
-          the discount. A company that harms more people faces less exposure
-          per person, by design, in a document the company wrote.
+          Run the arithmetic on the batches. Up to one hundred demands per
+          batch, grouped by state of residence, one set of filing fees per
+          batch. Harm 90 people in one state: one batch. Harm 190 there: two.
+          In between, nothing moves. The 101st person BMW wrongs in that state
+          costs it a new set of fees, and persons 102 through 200 cost it
+          nothing at all. Under this clause, the marginal price of wronging
+          another hundred people is zero. Sharper still: a hundred owners who
+          each arbitrated alone would cost BMW a hundred sets of fees. The
+          same hundred, batched under Section 30.D, can cost one. The crowd
+          itself is the discount. A company that harms more people faces less
+          exposure per person, by design, in a document the company wrote.
         </p>
         <p>
           Courts police this only by degree. Verizon's batches of ten,
