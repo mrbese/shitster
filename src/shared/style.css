@@ -1,0 +1,56 @@
+/* shitster design tokens. Stark protest-utility aesthetic: monochrome + one accent.
+   Hard rules: no additional hues, no gradients, no em dashes in copy. */
+:root {
+  --ink: #16161a;
+  --paper: #fafaf8;
+  --muted: #6b6b70;
+  --line: #d8d8d4;
+  --accent: #e8541a; /* safety orange, used sparingly: counters, primary buttons, underlines */
+  --mono: 'SF Mono', ui-monospace, 'Cascadia Code', Menlo, monospace;
+  --serifless: -apple-system, 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --max: 44rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --ink: #ececea; --paper: #131316; --muted: #98989e; --line: #2c2c30; }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--serifless); line-height: 1.6; font-size: 1.0625rem;
+}
+main { max-width: var(--max); margin: 0 auto; padding: 2rem 1.25rem 6rem; }
+h1, h2, h3 { line-height: 1.15; letter-spacing: -0.015em; }
+h1 { font-size: clamp(2rem, 6vw, 3.25rem); margin: 1.5rem 0 0.75rem; }
+a { color: inherit; text-decoration-color: var(--accent); text-decoration-thickness: 2px; }
+button, .btn {
+  font: inherit; cursor: pointer; border: 2px solid var(--ink);
+  background: var(--ink); color: var(--paper); padding: 0.65rem 1.25rem;
+}
+button.primary, .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+button.ghost, .btn.ghost { background: transparent; color: var(--ink); }
+input, textarea, select {
+  font: inherit; width: 100%; padding: 0.6rem 0.75rem; color: var(--ink);
+  background: transparent; border: 1.5px solid var(--line); border-radius: 0;
+}
+input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+label { display: block; font-size: 0.85rem; font-family: var(--mono); margin: 1.1rem 0 0.3rem; color: var(--muted); }
+.counter { font-family: var(--mono); color: var(--accent); font-variant-numeric: tabular-nums; }
+.disclaimer {
+  font-size: 0.85rem; color: var(--muted); border-left: 3px solid var(--line);
+  padding: 0.5rem 0.9rem; margin: 2rem 0;
+}
+nav.site {
+  display: flex; gap: 1.25rem; flex-wrap: wrap; align-items: baseline;
+  max-width: var(--max); margin: 0 auto; padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 0.85rem;
+}
+nav.site .wordmark { font-weight: 700; margin-right: auto; }
+footer.site {
+  max-width: var(--max); margin: 0 auto; padding: 2rem 1.25rem;
+  border-top: 1px solid var(--line); font-family: var(--mono);
+  font-size: 0.8rem; color: var(--muted);
+}
+@media (prefers-reduced-motion: no-preference) {
+  button, .btn, a { transition: opacity 120ms ease; }
+  button:hover, .btn:hover { opacity: 0.85; }
+}

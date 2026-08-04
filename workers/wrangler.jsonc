@@ -1,0 +1,29 @@
+{
+  "name": "shitster-counter",
+  "main": "counter.js",
+  "compatibility_date": "2026-01-01",
+  "kv_namespaces": [
+    {
+      "binding": "COUNTER",
+      "id": "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "COUNTER_DO",
+        "class_name": "Counter"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["Counter"]
+    }
+  ],
+  "vars": {
+    "SITE_ORIGIN": "https://your-deployed-site.example",
+    "GOAL": "5000"
+  }
+}
