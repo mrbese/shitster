@@ -161,12 +161,14 @@ app.innerHTML = `
       <p>
         Example. The individual conference requirement in Section 30.A, the
         obligation to "personally meet and confer" with every owner
-        separately, no shared conferences allowed, is new in the January 2026
-        revision of the Terms. It did not exist in the October 2023 version.
-        We cannot read minds, but we can read drafting, and this drafting has
-        one evident purpose: to prevent pooled attacks, to make sure no law
+        separately, no shared conferences allowed, is brand new. They added
+        it in the January 2026 revision of the Terms, months before this
+        campaign; the October 2023 version had no conference requirement at
+        all.
+        Probably it was added to prevent pooled attacks: to make sure no law
         firm can herd ten thousand claims through one phone call, to atomize
-        any crowd back into individuals. Fine. Atomized is exactly how we
+        any crowd back into individuals. We say probably because we can read
+        their drafting, not their minds. Fine. Atomized is exactly how we
         arrive: one owner, one certified letter, one conference, times
         everyone who is angry. The clause they wrote to make collective action
         slow now obligates them to take every one of those calls.
