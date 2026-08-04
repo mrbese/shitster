@@ -121,6 +121,15 @@ app.innerHTML = `
         movie ad on a dashboard its maker publicly called a private space.
       </p>
       <p>
+        And one market got neither the ad nor the argument. The Telegraph
+        reported that the animation was not made available to UK owners at
+        all. BMW has not said why. Commentators point at the UK's famously
+        aggressive advertising regulator and its driver-distraction rules; we
+        cannot verify the motive, only the choice. A company that calls
+        something a gift does not usually skip the house with the strictest
+        gift inspection.
+      </p>
+      <p>
         Here is what surprised us: a week into the campaign, no European
         consumer body, regulator, or politician had moved. All the visible
         anger was owners and journalists. Europeans hold the better cards and,
