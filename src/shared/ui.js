@@ -24,7 +24,7 @@ export function mountChrome() {
 
   const rantbar = document.createElement('div')
   rantbar.className = 'rantbar'
-  rantbar.textContent = "I'm not a lawyer, not legal advice, just a personal rant. DashOff or fuck off."
+  rantbar.textContent = "I'm not a lawyer, not legal advice, just a personal rant. DashOff or FuckOff."
   document.body.append(rantbar)
 }
 
