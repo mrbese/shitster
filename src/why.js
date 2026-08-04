@@ -56,6 +56,16 @@ app.innerHTML = `
         a third party's film.
       </p>
       <p>
+        Asked about the campaign, a BMW spokesperson told Kotaku: "The Festive
+        App in the BMW operating system is designed to provide customers with
+        optional themed animations and messages linked to a range of global
+        and local occasions. It is not a form of advertising." So the
+        company's position is that a promotion for a film, delivered under a
+        film-partnership Deadline valued at 309 million dollars in media
+        value, is not a form of advertising. We are content to let that
+        sentence argue with itself.
+      </p>
+      <p>
         This site is not built on a claim that the ad was undismissable, or that
         BMW charged anyone for it, or that BMW was paid for the promotion.
         None of those is true, or established, and none is the point. The
@@ -101,6 +111,16 @@ app.innerHTML = `
         as written. The one-year deadline in Section 28.f is the reason to
         use it now rather than later.
       </p>
+      <p>
+        There are also fronts this site does not press, because they belong to
+        regulators rather than owners. The FTC and the New Jersey Attorney
+        General fined Vizio 2.2 million dollars in 2017 for turning connected
+        screens in private living rooms into ad and tracking surfaces without
+        opt-in consent, a precedent that reads uncomfortably well onto a
+        connected dashboard. NHTSA's driver-distraction guidelines advise
+        against exactly this kind of startup-moment visual bait. Those cases
+        are agencies' to bring. The notice is yours.
+      </p>
     </section>
 
     <section>
@@ -123,6 +143,14 @@ app.innerHTML = `
         as a business model. If the screen is too safety-critical to open to
         your software, it is too safety-critical to rent to a film studio.
         Pick one.
+      </p>
+      <p>
+        The timing makes the contradiction literal. The EU's General Safety
+        Regulation requires new vehicles to carry driver-distraction
+        monitoring systems as of July 2026, the same month this campaign
+        started swinging Spider-Man across control displays. One arm of the
+        system is legally required to watch your eyes for distraction. The
+        other arm is supplying it.
       </p>
     </section>
 
@@ -156,15 +184,28 @@ app.innerHTML = `
         advertising that intrudes into your private sphere against your
         recognizable wishes, which is a strikingly literal description of a
         movie ad on a dashboard its maker publicly called a private space.
+        European regulators have even answered the threshold question already:
+        the EDPB's connected-vehicle guidelines classify a car as "terminal
+        equipment" under the ePrivacy Directive, the same protected category
+        as your laptop or phone, where storing content on the device or
+        accessing it requires prior consent unless strictly necessary for a
+        service you requested. A film promotion pushed into a car's storage is
+        strictly necessary for nothing.
       </p>
       <p>
         And one market got neither the ad nor the argument. The Telegraph
         reported that the animation was not made available to UK owners at
-        all. BMW has not said why. Commentators point at the UK's famously
-        aggressive advertising regulator and its driver-distraction rules; we
-        cannot verify the motive, only the choice. A company that calls
-        something a gift does not usually skip the house with the strictest
-        gift inspection.
+        all. BMW has not said why. Commentators point at a specific stack of
+        UK law: PECR, under which the ICO treats a connected car as terminal
+        equipment and which, since the Data (Use and Access) Act 2025,
+        carries fines up to 17.5 million pounds or 4 percent of global
+        turnover; the DMCCA 2024, which gave the CMA direct fining powers
+        over aggressive commercial practices; an advertising regulator that
+        banned a BMW ad as recently as February 2024; and the Consumer Rights
+        Act 2015, which treats the car's software as digital content that
+        updates may not degrade. We cannot verify the motive, only the
+        choice. A company that calls something a gift does not usually skip
+        the house with the strictest gift inspection.
       </p>
       <p>
         Here is what surprised us: a week into the campaign, no European
@@ -243,6 +284,23 @@ app.innerHTML = `
           when the one path out of them closes is not a neutral author. It is
           a party litigating its own terms in advance, in its own favor,
           before any dispute exists.
+        </p>
+        <p>
+          The deeper problem with unilateral revision is what it does to the
+          baseline. Every version we accept becomes the floor the next version
+          is measured against. In 2011 the class-action waiver was the
+          aggressive novelty; it is now boilerplate nobody blinks at. The mass
+          action waiver arrived next, then batching. If batches of 100 hold,
+          nothing stops the next revision from trying 250, and the revision
+          after that from measuring itself against 250 instead of against
+          zero. The psychology is ordinary normalization: no single step ever
+          feels worth fighting, and the total distance traveled never appears
+          on any page you signed. Milgram's subjects were never asked to
+          throw the 450-volt switch first. They were asked for fifteen more
+          volts than last time, every time. Contract drafting by annual
+          increment works on the same principle, and the only known defense
+          is the same in both cases: someone has to refuse a step that looks,
+          in isolation, too small to refuse.
         </p>
       </div>
     </section>
