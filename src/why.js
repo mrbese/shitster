@@ -67,6 +67,43 @@ app.innerHTML = `
     </section>
 
     <section>
+      <h2>The legal basis, in plain terms.</h2>
+      <p>
+        Three things BMW did, and what each one gives an owner to work with.
+      </p>
+      <p>
+        <strong>They went outside their own contract.</strong> Section 33 is
+        the provision that governs what appears on the dashboard, and it
+        authorizes messages about "Services, trials, expirations, renewals, or
+        other messages, as applicable." A film studio's promotion is none of
+        those. That is the breach-of-contract claim.
+      </p>
+      <p>
+        <strong>They broke a public promise.</strong> A named BMW executive
+        said, on the record in December 2023, that BMW would not sell in-car
+        screen space to play a commercial, calling the car a private space.
+        Owners bought and leased cars with that statement in the world. The gap
+        between what a company tells the public and what it then does is
+        exactly what state consumer-protection statutes exist for, starting
+        with the New Jersey Consumer Fraud Act, the law of the state BMW's own
+        Terms choose.
+      </p>
+      <p>
+        <strong>They wrote a process, and now they owe it.</strong> Section
+        30.A says that after an owner sends a notice of dispute by certified
+        mail, BMW must "personally meet and confer, via telephone or
+        videoconference" within 30 days of receiving it. Yes: their contract
+        obligates them to call you back. It also says multiple individuals
+        cannot share one conference, tolls the statute of limitations while
+        the process runs, and opens the door to AAA arbitration or small
+        claims court if nothing is resolved within 60 days of sending. None
+        of this is our invention. It is their drafting, read carefully, used
+        as written. The one-year deadline in Section 28.f is the reason to
+        use it now rather than later.
+      </p>
+    </section>
+
+    <section>
       <h2>Too dangerous for your apps, safe enough for their ads.</h2>
       <p>
         Regulators, the European Union loudest among them, now require the
@@ -157,10 +194,32 @@ app.innerHTML = `
           individual conference is not.
         </p>
         <p>
-          Ordinarily, a company that harms more people faces more liability, not
-          less per person. A discount that gets steeper the more people BMW has
-          harmed runs the logic backward. It rewards scale of harm with scale of
-          savings, on the defendant's side only.
+          Run the arithmetic on the batches. One hundred demands per batch, one
+          set of filing fees per batch. Harm 90 people: one batch. Harm 190:
+          two. In between, nothing moves. The 101st person BMW wrongs costs it
+          a new set of fees, and persons 102 through 200 cost it nothing at
+          all. Under this clause, the marginal price of wronging another
+          hundred people is zero. Sharper still: a hundred owners who each
+          arbitrated alone would cost BMW a hundred sets of fees. The same
+          hundred, batched under Section 30.D, cost one. The crowd itself is
+          the discount. A company that harms more people faces less exposure
+          per person, by design, in a document the company wrote.
+        </p>
+        <p>
+          Courts police this only by degree. Verizon's batches of ten,
+          processed one at a time, were struck down. Ticketmaster's bespoke
+          mass-arbitration protocol was struck down. So BMW drafted one
+          hundred, in parallel, with tolling, calibrated to survive. We think
+          the degree is not the defect. If a batch of ten thousand would be
+          void because it extinguishes claims, a batch of one hundred is the
+          same mechanism at a politer volume. The answer should be one or
+          zero, not a number a defense lawyer tunes annually to sit just under
+          whatever the last court tolerated. Justice Kagan described where
+          this design ends in her 2013 dissent in American Express v. Italian
+          Colors: an arbitration clause built this way is "a foolproof way of
+          killing off valid claims." Her summary of the majority's response:
+          "Too darn bad." That has been the law since. This site is what
+          working inside that law looks like.
         </p>
       </div>
     </section>
