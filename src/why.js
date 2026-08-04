@@ -90,6 +90,54 @@ app.innerHTML = `
     </section>
 
     <section>
+      <h2>Two systems, one ad.</h2>
+      <p>
+        The same startup banner reached Munich and Michigan. What owners can do
+        about it splits at the border.
+      </p>
+      <p>
+        In the United States, the arbitration clause holds. The legislative fix,
+        the FAIR Act, passed the House in March 2022, died in the Senate, and
+        has been reintroduced ever since; it is pending right now as S.2799 and
+        H.R.5350. The only carve-out Congress has actually enacted protects
+        sexual assault and harassment claims (2022). Until that changes, the
+        strongest American moves are individual and procedural: the
+        <a href="bmw.html">Section 30.A notice</a>, the
+        <a href="optout.html">30-day opt-out</a> if you are a new owner, and
+        <a href="congress.html">telling your member of Congress</a> to pass the
+        FAIR Act.
+      </p>
+      <p>
+        In the European Union, the wall Americans hit does not exist. Directive
+        93/13 treats contract terms that hinder your right to sue, including
+        boilerplate arbitration clauses, as presumptively unfair. German law
+        goes further: an arbitration agreement with a consumer must be its own
+        separately signed document (ZPO section 1031(5)), so a clause buried in
+        sales terms does not bind you. Germany has had a real collective
+        redress action since October 2023, the Abhilfeklage, and the federal
+        consumer association has already used it. And UWG section 7 prohibits
+        advertising that intrudes into your private sphere against your
+        recognizable wishes, which is a strikingly literal description of a
+        movie ad on a dashboard its maker publicly called a private space.
+      </p>
+      <p>
+        Here is what surprised us: a week into the campaign, no European
+        consumer body, regulator, or politician had moved. All the visible
+        anger was owners and journalists. Europeans hold the better cards and,
+        so far, nobody is playing them. If you are a European BMW owner, your
+        consumer association can act where you cannot: write to them (in
+        Germany, the vzbv and your regional Verbraucherzentrale). If a
+        qualified entity takes this up anywhere in Europe, we will link it
+        here.
+      </p>
+      <p>
+        Americans got the ad and kept the arbitration clause. Europeans got the
+        ad and kept their courts. Only one of those groups needs a letter
+        generator, and that is why this site exists.
+      </p>
+    </section>
+
+    <section>
       <h2><span class="num">Principle one</span>Liability should not shrink as harm scales.</h2>
       <div class="principle">
         <p>
