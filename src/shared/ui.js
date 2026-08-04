@@ -44,6 +44,12 @@ export function downloadBlob(bytes, filename, mimeType = 'application/pdf') {
 
 // Pledge counter. Reads a static JSON by default; a deployed Worker endpoint
 // can be swapped in via window.SHITSTER_COUNTER_URL without a rebuild.
+// window.SHITSTER_COUNTER_URL is a per-page global, not a site-wide one: it
+// must be set on every page that calls fetchCount() or bumpCount() (every
+// page does, via mountChrome()'s callers), or that page silently falls back
+// to the static /counter.json instead of the live worker. See
+// workers/README.md for the copy-paste snippet (needed on all five pages)
+// and the recommended build-time-define alternative.
 export async function fetchCount() {
   const url = window.SHITSTER_COUNTER_URL || 'counter.json'
   try {

@@ -17,6 +17,20 @@ const DISCLAIMER = `This is a self-help template, not legal advice, and no attor
 relationship exists. You are acting individually, in your own name. Read what you sign.
 If your situation is unusual, talk to a lawyer.`
 
+// Local-date "YYYY-MM-DD" for today, used to cap the date-of-first-acceptance
+// input: that date is when you accepted a BMW agreement, which cannot be in
+// the future. Built from local calendar components (not toISOString(), which
+// is UTC and can print the wrong day depending on the browser's time zone)
+// to match parseDateInput()'s local-date handling below.
+function todayIsoLocal() {
+  const d = new Date()
+  const mm = String(d.getMonth() + 1).padStart(2, '0')
+  const dd = String(d.getDate()).padStart(2, '0')
+  return `${d.getFullYear()}-${mm}-${dd}`
+}
+
+const TODAY_ISO = todayIsoLocal()
+
 app.innerHTML = `
   <style>
     .lede { color: var(--muted); max-width: 40rem; }
@@ -75,7 +89,7 @@ app.innerHTML = `
       agreement with an arbitration clause. If unsure, use your purchase or
       activation date.
     </p>
-    <input type="date" id="first-accept" required>
+    <input type="date" id="first-accept" max="${TODAY_ISO}" required>
 
     <div id="deadline-box" class="deadline-box">
       <span class="label">Postmark deadline</span>
@@ -110,7 +124,12 @@ app.innerHTML = `
   <div class="mail-steps">
     <h3>After you download it</h3>
     <ol>
-      <li>Print it and sign the signature line by hand.</li>
+      <li>
+        Print it and sign the signature line by hand. Section 30.B itself
+        does not list a signature among its required contents, but a
+        handwritten signature is a prudent, low-cost way to show the letter
+        is really from you.
+      </li>
       <li>Mail it so it is postmarked on or before your deadline above.</li>
       <li>Keep proof of mailing. A certificate of mailing or tracking receipt from
         the post office is enough; strict compliance means you may need to show
@@ -377,6 +396,19 @@ document.getElementById('optout-form').addEventListener('submit', async (e) => {
 
   if (!firstAcceptInput.value || !name || !address || !phone || !email) {
     statusEl.textContent = 'Fill in every field first.'
+    return
+  }
+
+  // The date of first acceptance cannot be in the future: it is when you
+  // accepted a BMW agreement, an event that has already happened or is
+  // happening today. The input's max="${TODAY_ISO}" attribute stops most
+  // pickers from offering a future date, but a typed or pasted value can
+  // still get past it, so check again here with a plain error.
+  const acceptedDate = parseDateInput(firstAcceptInput.value)
+  const todayLocal = new Date()
+  const todayMidnight = new Date(todayLocal.getFullYear(), todayLocal.getMonth(), todayLocal.getDate())
+  if (!acceptedDate || acceptedDate.getTime() > todayMidnight.getTime()) {
+    statusEl.textContent = 'The date of first acceptance cannot be in the future. Enter today\'s date or an earlier one.'
     return
   }
 

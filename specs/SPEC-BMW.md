@@ -13,7 +13,8 @@ Read SPEC-SHARED.md first. You own only `bmw.html` and files under `src/bmw/`.
    (date input, default 2026-07-27, min 2026-07-27 max 2026-08-10), ownership type
    (own / lease), state of residence (select, 50 states + DC), amount in dispute in USD
    (number, default 100, helper text: "a good-faith estimate; Section 30.A requires a
-   specific number. Many owners use the Section 29.d liability figure of $100."),
+   specific number. Many owners use the Section 28.d liability figure, the greater of
+   12 months of Service fees or $100."),
    and a free-text personal statement textarea labeled:
    "In your own words: what happened and why you object. Your words, not ours.
    This is the part BMW's lawyers cannot call a form letter."
@@ -58,14 +59,20 @@ Vehicle relationship: [owner/lessee]
 DESCRIPTION OF THE DISPUTE AND LEGAL CLAIMS
 On or about [ad date], BMW NA delivered third-party promotional content (an
 advertisement for the Sony Pictures film "Spider-Man: Brand New Day") to the
-Control Display of my vehicle. Section 33 of the Terms authorizes dashboard
-communications concerning "Services, trials, expirations, renewals, or other
-messages, as applicable," that is, matters related to the Services. A third-party
-motion picture promotion is not such a matter. Nor is it "relevant in-car or in-app
-information" within any reasonable reading of Section 31.c. BMW NA has also
-publicly described the Control Display as a private space that would not become
-an advertising surface. Delivering paid third-party advertising to the primary
-control interface of a vehicle I [own/lease] therefore gives rise to the following
+Control Display of my vehicle. Section 33 of the Terms governs dashboard
+communications and authorizes messages concerning "Services, trials, expirations,
+renewals, or other messages, as applicable," that is, matters related to the
+Services. A third-party motion picture promotion is not such a matter. I am aware
+that Section 31.c permits BMW NA to use collected information to "provide relevant
+in-car or in-app information, businesses, locations, advertising, and other
+purposes." That provision governs how BMW NA may use information it collects
+about me; it does not enlarge Section 33's grant of authority over what may be
+displayed on the Control Display, and no provision of the Terms authorizes the
+use of my vehicle's primary control interface as a promotional surface for third
+parties. BMW NA has also publicly described the Control Display as a private
+space that would not become an advertising surface. Delivering third-party
+promotional content to the primary control interface of a vehicle I [own/lease]
+therefore gives rise to the following
 individual claims: (1) breach of contract, including breach of the implied covenant
 of good faith and fair dealing, under the Terms; and (2) unlawful and deceptive
 commercial practices under the New Jersey Consumer Fraud Act, N.J.S.A. 56:8-1
@@ -103,5 +110,5 @@ and the note "sign by hand before mailing").
 - PDF downloads with all placeholders filled, no "[" left in output, wraps long
   personal statements across pages correctly.
 - VIN validation rejects I/O/Q and wrong lengths with a plain-English error.
-- Disclaimer block present. No em dashes anywhere. One-year deadline (Section 29.f)
+- Disclaimer block present. No em dashes anywhere. One-year deadline (Section 28.f)
   mentioned in the explain step.

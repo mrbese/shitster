@@ -39,20 +39,27 @@ app.innerHTML = `
         BMW has previously and publicly described the Control Display as a
         private space, one that would not become an advertising surface. The
         contract those owners already signed does not obviously permit what
-        happened. Section 33 of the ConnectedDrive Terms authorizes dashboard
-        communication to inform owners "about Services, trials, expirations,
-        renewals, or other messages, as applicable," which is to say, matters
-        related to the Services. A movie studio's promotional content is not
-        that. Section 31.c authorizes use of collected information to provide
-        "relevant in-car or in-app information," and a movie studio's
-        promotional banner is not relevant in-car information under any
-        ordinary reading of that phrase.
+        happened. Section 33 of the ConnectedDrive Terms governs dashboard
+        communication, authorizing messages to inform owners "about Services,
+        trials, expirations, renewals, or other messages, as applicable,"
+        which is to say, matters related to the Services. A movie studio's
+        promotional content is not that. Section 31.c permits BMW to use
+        collected information to "provide relevant in-car or in-app
+        information, businesses, locations, advertising, and other purposes."
+        That is a real sentence in the Terms, word for word, including
+        "advertising," and it is worth reading in full rather than around.
+        But it governs how BMW may use information it collects about you. It
+        is not a grant of authority over the dashboard display itself, that
+        is Section 33's job, and no provision of the Terms authorizes turning
+        a vehicle's primary control interface into a promotional surface for
+        a third party's film.
       </p>
       <p>
         This site is not built on a claim that the ad was undismissable, or that
-        BMW charged anyone for it. Neither is true, and neither is the point.
-        The point is narrower and, we think, harder to argue with: BMW put
-        paid third-party promotional content on a screen it told the public
+        BMW charged anyone for it, or that BMW was paid for the promotion.
+        None of those is true, or established, and none is the point. The
+        point is narrower and, we think, harder to argue with: BMW put
+        third-party promotional content on a screen it told the public
         would stay private, on cars people already own, under a contract that
         does not say it can.
       </p>

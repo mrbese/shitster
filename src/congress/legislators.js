@@ -1,6 +1,11 @@
 // Reads the vendored legislators-current.json snapshot (data/README.md has the
 // source and refresh command) and resolves state/district into members.
 //
+// District numbers themselves come from the static apportionment table in
+// ./apportionment.js, not from this snapshot: a vacant seat still has a
+// district number even though no member currently holds it, and deriving
+// the list from serving members alone silently drops those districts.
+//
 // The snapshot is fetched at lookup time rather than statically imported: a
 // static `import raw from ...json` makes Vite inline the whole 1.4 MB file
 // into the page's JS bundle (see data/README.md), so every visitor pays for
@@ -8,6 +13,8 @@
 // single lookup only ever needs one state's entries. The file lives in
 // public/ instead so it is served as a plain static asset and fetched lazily
 // on first use, cached in-memory for the rest of the session.
+import { districtNumbersForState } from './apportionment.js'
+
 let rawPromise = null
 
 function loadRaw() {
@@ -69,17 +76,14 @@ export function allStateCodes() {
   return Object.keys(STATE_NAMES)
 }
 
-// Distinct, sorted district numbers this state currently has representation
-// for. At-large states and territories/DC use district 0; that shows up here
-// as a single-element [0].
+// Distinct, sorted district numbers this state or jurisdiction has, per the
+// static apportionment table, regardless of whether every seat currently has
+// a serving member. At-large states and territories/DC use district 0; that
+// shows up here as a single-element [0]. Kept async (even though the table
+// lookup itself is synchronous) so every caller can keep using `await`
+// uniformly across this module.
 export async function districtsForState(state) {
-  const raw = await loadRaw()
-  const set = new Set()
-  for (const m of raw) {
-    const t = currentTerm(m)
-    if (t.type === 'rep' && t.state === state) set.add(t.district)
-  }
-  return [...set].sort((a, b) => a - b)
+  return districtNumbersForState(state)
 }
 
 export async function senatorsFor(state) {
@@ -110,7 +114,6 @@ export async function representativeFor(state, district) {
   })
   let match = inState.find((m) => currentTerm(m).district === district)
   if (!match) match = inState.find((m) => currentTerm(m).district === 0)
-  if (!match && inState.length === 1) match = inState[0]
   return match ? { member: match, term: currentTerm(match) } : null
 }
 

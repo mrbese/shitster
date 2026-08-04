@@ -166,14 +166,20 @@ export async function generateNoticePdf(data) {
   w.paragraphBlock(
     `On or about ${derived.adDateLong}, BMW NA delivered third-party promotional content (an ` +
     'advertisement for the Sony Pictures film "Spider-Man: Brand New Day") to the ' +
-    'Control Display of my vehicle. Section 33 of the Terms authorizes dashboard ' +
-    'communications concerning "Services, trials, expirations, renewals, or other ' +
-    'messages, as applicable," that is, matters related to the Services. A third-party ' +
-    'motion picture promotion is not such a matter. Nor is it "relevant in-car or in-app ' +
-    'information" within any reasonable reading of Section 31.c. BMW NA has also ' +
-    'publicly described the Control Display as a private space that would not become ' +
-    `an advertising surface. Delivering paid third-party advertising to the primary ` +
-    `control interface of a vehicle I ${derived.relationshipVerb} therefore gives rise to the following ` +
+    'Control Display of my vehicle. Section 33 of the Terms governs dashboard ' +
+    'communications and authorizes messages concerning "Services, trials, expirations, ' +
+    'renewals, or other messages, as applicable," that is, matters related to the ' +
+    'Services. A third-party motion picture promotion is not such a matter. I am aware ' +
+    'that Section 31.c permits BMW NA to use collected information to "provide relevant ' +
+    'in-car or in-app information, businesses, locations, advertising, and other ' +
+    'purposes." That provision governs how BMW NA may use information it collects ' +
+    "about me; it does not enlarge Section 33's grant of authority over what may be " +
+    "displayed on the Control Display, and no provision of the Terms authorizes the " +
+    "use of my vehicle's primary control interface as a promotional surface for third " +
+    'parties. BMW NA has also publicly described the Control Display as a private ' +
+    'space that would not become an advertising surface. Delivering third-party ' +
+    `promotional content to the primary control interface of a vehicle I ${derived.relationshipVerb} ` +
+    'therefore gives rise to the following ' +
     'individual claims: (1) breach of contract, including breach of the implied covenant ' +
     'of good faith and fair dealing, under the Terms; and (2) unlawful and deceptive ' +
     'commercial practices under the New Jersey Consumer Fraud Act, N.J.S.A. 56:8-1 ' +

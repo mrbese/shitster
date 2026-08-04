@@ -117,7 +117,10 @@ Netlify, Vercel, GitHub Pages, or a plain object storage bucket behind a
 CDN. Run `npm run build` and upload the contents of `dist/`. If you want the
 live pledge counter instead of the static `/counter.json`, deploy
 `workers/counter.js` separately (see `workers/README.md`) and set
-`window.SHITSTER_COUNTER_URL` on the deployed site.
+`window.SHITSTER_COUNTER_URL` on the deployed site, on every page that reads
+or bumps the counter (`index.html` and `bmw.html` at minimum, all five for
+safety), not just the landing page. See `workers/README.md` for a copy-paste
+snippet and a recommended build-time-define alternative.
 
 ## Contributing
 

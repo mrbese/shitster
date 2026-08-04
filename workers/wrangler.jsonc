@@ -2,12 +2,6 @@
   "name": "shitster-counter",
   "main": "counter.js",
   "compatibility_date": "2026-01-01",
-  "kv_namespaces": [
-    {
-      "binding": "COUNTER",
-      "id": "REPLACE_WITH_YOUR_KV_NAMESPACE_ID"
-    }
-  ],
   "durable_objects": {
     "bindings": [
       {

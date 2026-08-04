@@ -17,7 +17,9 @@ export async function geocodeAddress(address) {
   try {
     res = await fetch(url)
   } catch (err) {
-    throw new GeocodeError('Could not reach the Census geocoder (likely blocked by the browser).')
+    throw new GeocodeError(
+      'The Census geocoder does not allow browser-based lookups from other sites (it sends no CORS headers), so this call was blocked by your browser.'
+    )
   }
   if (!res.ok) throw new GeocodeError(`Census geocoder returned ${res.status}.`)
 

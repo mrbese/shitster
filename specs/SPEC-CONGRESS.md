@@ -14,15 +14,21 @@ which would make pre-dispute arbitration clauses unenforceable in consumer contr
 
 - Vendor a snapshot: download
   https://unitedstates.github.io/congress-legislators/legislators-current.json
-  into `data/legislators-current.json` at build time (check it into the repo; it is
-  public-domain data, a few MB). Write `data/README.md` noting the source and that
-  it is a point-in-time snapshot with an update command.
-- District lookup: US Census geocoder,
-  `https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?address=<addr>&benchmark=Public_AR_Current&vintage=Current_Current&layers=all&format=json`.
-  Parse the current congressional district from the response. Handle CORS pragmatically:
-  try the direct call; if it fails, show a graceful fallback where the user selects
-  their state and district manually (link to house.gov/representatives/find-your-representative
-  so they can look it up). Do not add any third-party API with keys.
+  into `public/legislators-current.json` (served same-origin, lazily fetched at
+  runtime so it stays out of the JS bundle; check it into the repo; it is
+  public-domain data, a few MB). Write `data/README.md` noting the source, the
+  location, and that it is a point-in-time snapshot with an update command.
+- District lookup: manual first. The primary path is a state and district picker
+  built from the static apportionment table (`src/congress/apportionment.js`), not
+  from any network call. As an optional enhancement, also offer the US Census
+  geocoder,
+  `https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?address=<addr>&benchmark=Public_AR_Current&vintage=Current_Current&layers=all&format=json`,
+  to parse the current congressional district from an address. It has no CORS
+  support, so it predictably fails for most visitors calling it from a page on
+  another site; present it as a "try automatic lookup, often fails" option that
+  falls back to the manual picker (link to
+  house.gov/representatives/find-your-representative so they can look it up if
+  they do not know their district). Do not add any third-party API with keys.
 - From state+district, resolve the representative; from state, the two senators.
   Show name, party, phone (from the dataset's terms[].phone), webform URL
   (terms[].contact_form or the member's official website), and district office guidance.
@@ -46,8 +52,9 @@ nearest district office listed on the member's official website.
 
 ## Acceptance criteria
 
-- Works fully client-side against the vendored JSON (the only runtime network call
-  is the Census geocoder, with the manual state/district fallback if it fails).
+- Works fully client-side: the legislators snapshot is a same-origin runtime fetch
+  from public/, and the only cross-origin call is the optional Census geocoder
+  attempt (manual state/district picker is the primary flow and needs no network).
 - No user data leaves the browser except the address string sent to the Census
   geocoder, and the page says exactly that before the user submits the lookup.
 - Handles: DC/territories (delegate, no senators; say so plainly), at-large states,

@@ -55,11 +55,16 @@ app.innerHTML = `
       notice, you may then file for AAA consumer arbitration or take the
       matter to small claims court, whichever fits your amount in dispute.
       Filing deadlines and the statute of limitations pause while this
-      process runs. Separately, under Section 29.f of the Terms, any claim
+      process runs. Separately, under Section 28.f of the Terms, any claim
       must be brought within one year after it arose, so do not sit on this.
     </p>
     <p class="counter">
       <span id="counter-text">Loading count...</span>
+    </p>
+    <p class="field-help">
+      That count is PDFs generated on this page, nothing more. A notice only
+      counts when you print it, sign it, and mail it. Generating the PDF does
+      not send anything to BMW.
     </p>
     <button id="start-btn" class="primary" type="button">Start my notice</button>
   </section>
@@ -120,10 +125,9 @@ app.innerHTML = `
       <label for="amount">Amount in dispute (USD)</label>
       <input id="amount" name="amount" type="number" min="0.01" step="0.01" value="100" required>
       <p class="field-help">
-        A good-faith estimate; Section 30.A requires a specific number.
-        Section 29.d caps BMW's liability at the greater of 12 months of
-        Service fees or $100. Many owners who pay less than that annually
-        for Services use $100 here.
+        A good-faith estimate; Section 30.A requires a specific number. Many
+        owners use the Section 28.d liability figure, the greater of 12
+        months of Service fees or $100.
       </p>
 
       <label for="personalStatement">
@@ -150,9 +154,13 @@ app.innerHTML = `
       </li>
       <li>Keep the certified mail receipt and the green return receipt card.</li>
       <li>
-        Expect contact from BMW to schedule your individual conference within
-        30 days of delivery. Note the delivery date, it starts both clocks
-        that matter here.
+        Two different clocks, two different start dates. The 30-day
+        conference clock runs from BMW's receipt of this notice (the
+        delivery date on your green return receipt), so expect contact to
+        schedule your individual conference within 30 days of that date. The
+        60-day arbitration-eligibility clock runs separately, from the day
+        you send this notice (today's postmark), not from delivery. Keep
+        both dates.
       </li>
     </ol>
     <p>
@@ -167,10 +175,11 @@ app.innerHTML = `
       <li><a href="https://www.letterstream.com" target="_blank" rel="noopener">letterstream.com</a></li>
     </ul>
     <p>
-      Decide for yourself which fits your situation. After AAA arbitration or
-      small claims is an option 60 days from now, that is also your call to
-      make and to file, not something this site does for you. Neither link
-      below is something this site fills out or submits, they are just
+      Decide for yourself which fits your situation. AAA arbitration or small
+      claims becomes an option once 60 days have passed since you sent this
+      notice and the dispute is still unresolved, and that is also your call
+      to make and to file, not something this site does for you. Neither
+      link below is something this site fills out or submits, they are just
       where each process actually happens:
     </p>
     <ul>
@@ -196,7 +205,7 @@ fetchCount().then((count) => {
   }
   const verb = count === 1 ? 'has' : 'have'
   const noun = count === 1 ? 'owner' : 'owners'
-  counterText.textContent = `${count.toLocaleString('en-US')} ${noun} ${verb} generated a notice. Goal 5,000.`
+  counterText.textContent = `${count.toLocaleString('en-US')} ${noun} ${verb} generated a notice PDF so far. Goal 5,000.`
 })
 
 document.getElementById('start-btn').addEventListener('click', (event) => {

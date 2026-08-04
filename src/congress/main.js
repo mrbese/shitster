@@ -30,9 +30,10 @@ const DISCLAIMER = `
 app.innerHTML = `
   <h1>Tell Congress to end forced arbitration.</h1>
   <p>
-    Address in, your two senators and one representative out. Three ways to reach
-    each of them: a 30-second call script, a letter you can paste into a webform,
-    and a printable letter addressed for mailing to their district office.
+    Pick your state and district, get your two senators and one representative
+    out. Three ways to reach each of them: a 30-second call script, a letter you
+    can paste into a webform, and a printable letter addressed for mailing to
+    their district office.
   </p>
   <p>
     The ask is the FAIR Act, the Forced Arbitration Injustice Repeal Act. It would
@@ -44,39 +45,42 @@ app.innerHTML = `
 
   <section id="lookup-section">
     <h2>Step 1. Find your senators and representative</h2>
-    <p class="disclaimer">
-      The only thing this step sends over the network is the address you type
-      below, sent to the U.S. Census Bureau's free geocoder to find your
-      congressional district. Nothing else on this page leaves your browser.
+    <p>
+      Pick your state and, if it has more than one seat, your congressional
+      district. If you do not know your district number, look it up at
+      <a href="https://www.house.gov/representatives/find-your-representative" target="_blank" rel="noopener">house.gov's representative finder</a>
+      and come back with the number.
     </p>
-    <label for="addr">Your address</label>
-    <input id="addr" type="text" placeholder="123 Main St, Springfield, IL 62704" autocomplete="off">
-    <div style="margin-top:0.75rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
-      <button id="lookup-btn" class="primary" type="button">Find my representatives</button>
+    <label for="manual-state">State or territory</label>
+    <select id="manual-state">
+      <option value="">Choose one</option>
+    </select>
+    <div id="manual-district-wrap" hidden>
+      <label for="manual-district">Congressional district</label>
+      <select id="manual-district"></select>
     </div>
-    <p id="lookup-status" style="min-height:1.5em;"></p>
+    <div style="margin-top:0.75rem;">
+      <button id="manual-btn" class="primary" type="button">Find my representatives</button>
+    </div>
+    <p id="manual-status" style="min-height:1.5em;"></p>
 
-    <details id="manual-details">
-      <summary>Address lookup not working, or you'd rather pick manually</summary>
-      <p>
-        Many browsers block this page from calling the Census geocoder directly
-        (it does not allow cross-site requests). Pick your state below instead.
-        If you do not know your district, use
-        <a href="https://www.house.gov/representatives/find-your-representative" target="_blank" rel="noopener">house.gov's representative finder</a>
-        and come back with the number.
+    <details id="lookup-details">
+      <summary>Try automatic lookup by street address (optional, often fails)</summary>
+      <p class="disclaimer">
+        The only thing this sends over the network is the address you type
+        below, sent to the U.S. Census Bureau's free geocoder to find your
+        congressional district. Nothing else on this page leaves your browser.
+        Most browsers block this from working at all: the Census geocoder does
+        not allow lookups from a page on another site (it has no CORS
+        support), so this predictably fails for most visitors. If it fails,
+        use the picker above instead.
       </p>
-      <label for="manual-state">State or territory</label>
-      <select id="manual-state">
-        <option value="">Choose one</option>
-      </select>
-      <div id="manual-district-wrap" hidden>
-        <label for="manual-district">Congressional district</label>
-        <select id="manual-district"></select>
+      <label for="addr">Your address</label>
+      <input id="addr" type="text" placeholder="123 Main St, Springfield, IL 62704" autocomplete="off">
+      <div style="margin-top:0.75rem; display:flex; gap:0.75rem; flex-wrap:wrap;">
+        <button id="lookup-btn" type="button">Try automatic lookup</button>
       </div>
-      <div style="margin-top:0.75rem;">
-        <button id="manual-btn" type="button">Use this state</button>
-      </div>
-      <p id="manual-status" style="min-height:1.5em;"></p>
+      <p id="lookup-status" style="min-height:1.5em;"></p>
     </details>
   </section>
 
@@ -120,7 +124,6 @@ app.innerHTML = `
 const addrInput = app.querySelector('#addr')
 const lookupBtn = app.querySelector('#lookup-btn')
 const lookupStatus = app.querySelector('#lookup-status')
-const manualDetails = app.querySelector('#manual-details')
 const manualState = app.querySelector('#manual-state')
 const manualDistrictWrap = app.querySelector('#manual-district-wrap')
 const manualDistrict = app.querySelector('#manual-district')
@@ -140,24 +143,35 @@ for (const code of allStateCodes().sort((a, b) => STATE_NAMES[a].localeCompare(S
   manualState.appendChild(opt)
 }
 
-manualState.addEventListener('change', async () => {
-  lookupStatus.textContent = ''
-  manualStatus.textContent = ''
-  const state = manualState.value
+// Fills (or hides) the district picker for the given state. Shared by the
+// manual-state 'change' handler below and by resolveMembers()'s
+// unknown-district note, which needs to populate the picker for a state it
+// sets programmatically without dispatching a synthetic 'change' event (that
+// would run through the handler below and clear lookupStatus/manualStatus,
+// wiping the "Matched: <address>" confirmation from a geocoder lookup that
+// had otherwise succeeded).
+async function populateDistrictPicker(state) {
   if (!state) {
     manualDistrictWrap.hidden = true
     return
   }
+  const districts = await districtsForState(state)
+  if (districts.length <= 1) {
+    manualDistrictWrap.hidden = true
+  } else {
+    manualDistrictWrap.hidden = false
+    manualDistrict.innerHTML = districts
+      .map((d) => `<option value="${d}">District ${d}</option>`)
+      .join('')
+  }
+}
+
+manualState.addEventListener('change', async () => {
+  lookupStatus.textContent = ''
+  manualStatus.textContent = ''
+  const state = manualState.value
   try {
-    const districts = await districtsForState(state)
-    if (districts.length <= 1) {
-      manualDistrictWrap.hidden = true
-    } else {
-      manualDistrictWrap.hidden = false
-      manualDistrict.innerHTML = districts
-        .map((d) => `<option value="${d}">District ${d}</option>`)
-        .join('')
-    }
+    await populateDistrictPicker(state)
   } catch (err) {
     manualStatus.textContent = 'Could not load the legislator data. Reload the page and try again.'
   }
@@ -183,7 +197,7 @@ manualBtn.addEventListener('click', async () => {
       manualDistrict.innerHTML = districts
         .map((d) => `<option value="${d}">District ${d}</option>`)
         .join('')
-      manualStatus.textContent = 'Choose your congressional district below, then click "Use this state" again.'
+      manualStatus.textContent = 'Choose your congressional district below, then click "Find my representatives" again.'
       return
     }
     const district = districts.length <= 1 ? (districts[0] ?? 0) : parseInt(manualDistrict.value, 10)
@@ -210,18 +224,23 @@ lookupBtn.addEventListener('click', async () => {
       result = await geocodeAddress(address)
     } catch (err) {
       // A failure here is the geocoder's fault, not the legislator data's.
+      // The Census geocoder does not send the headers browsers require to
+      // allow a page on another site to call it (no CORS support), so this
+      // fails for most visitors; say that plainly rather than implying it is
+      // a fixable problem, and point at the picker above and house.gov.
       const msg =
         err instanceof GeocodeError
           ? err.message
-          : 'Something went wrong reaching the Census geocoder.'
-      lookupStatus.textContent = `${msg} Pick your state below instead.`
-      manualDetails.open = true
+          : 'The Census geocoder does not allow browser-based lookups from other sites.'
+      lookupStatus.textContent =
+        `${msg} Use the state and district picker above instead, or look up your ` +
+        'district directly at house.gov/representatives/find-your-representative.'
       return
     }
     if (!result) {
       lookupStatus.textContent =
-        'The Census geocoder could not match that address. Try a fuller address (street, city, state, ZIP), or pick your state below.'
-      manualDetails.open = true
+        'The Census geocoder could not match that address. Try a fuller address ' +
+        '(street, city, state, ZIP), or use the picker above instead.'
       return
     }
     lookupStatus.textContent = `Matched: ${result.matchedAddress}`
@@ -269,6 +288,12 @@ function renderMemberSummaryCard(entry) {
 async function resolveMembers(state, district, extra) {
   const senators = hasSenators(state) ? await senatorsFor(state) : []
   const repEntry = await representativeFor(state, district)
+  // The apportionment-derived district list (see apportionment.js), used to
+  // tell a genuinely vacant seat (a real district, no serving member) apart
+  // from an undetermined one (we never got a real district number to look
+  // up, e.g. a failed geocode that defaulted to 0 on a multi-district state).
+  const knownDistricts = await districtsForState(state)
+  const districtIsKnown = knownDistricts.includes(district)
 
   membersById.clear()
   const entries = []
@@ -280,20 +305,27 @@ async function resolveMembers(state, district, extra) {
   }
   for (const e of entries) membersById.set(e.member.id.bioguide, e)
 
-  // Results note: territory/DC, missing-district, and at-large framing.
+  // Results note: territory/DC, vacant-seat, missing-district, and at-large
+  // framing.
   const stateName = STATE_NAMES[state] || state
   let note = ''
-  let scrollToManual = false
   if (senators.length === 0) {
     const t = entries.find((e) => e.term.type === 'rep')
     const title = t ? t.title : 'Delegate'
     note = `<p class="disclaimer">As a resident of ${stateName}, you have a non-voting ${title} in the House and no U.S. Senators. Non-voting members can still cosponsor and speak on bills, so it is still worth asking.</p>`
+  } else if (!repEntry && districtIsKnown) {
+    const districtPhrase = district > 0 ? ` district ${district}` : ''
+    note = `<p class="disclaimer">This seat is currently vacant: ${stateName}${districtPhrase} has no representative on file right now. Your senators are shown below; check back once the seat is filled to also reach your representative.</p>`
   } else if (!repEntry) {
     note = `<p class="disclaimer">We could not determine your congressional district, so your U.S. representative is not shown below (your senators are). Use the district picker above to select your district manually and find your representative.</p>`
-    manualDetails.open = true
     manualState.value = state
-    manualState.dispatchEvent(new Event('change'))
-    scrollToManual = true
+    // Populate the district picker directly rather than dispatching a
+    // synthetic 'change' event: that event runs through the handler above,
+    // which clears lookupStatus and manualStatus, wiping the "Matched:
+    // <address>" confirmation this note is meant to sit alongside.
+    populateDistrictPicker(state).catch(() => {
+      manualStatus.textContent = 'Could not load the legislator data. Reload the page and try again.'
+    })
   } else if (repEntry.term.district === 0) {
     note = `<p class="disclaimer">${stateName} elects one representative at-large; there are no numbered districts.</p>`
   }
@@ -310,11 +342,7 @@ async function resolveMembers(state, district, extra) {
 
   resultsSection.hidden = false
   actionsSection.hidden = false
-  // If the representative could not be resolved, the picker the user needs
-  // to act on (#manual-details) sits above #results-section in the DOM, so
-  // scrolling to the results would push it off-screen.
-  const scrollTarget = scrollToManual ? manualDetails : resultsSection
-  scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
 
 // ---- step 3: per-member actions ----
