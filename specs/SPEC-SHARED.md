@@ -35,7 +35,8 @@ Source PDF is committed at `docs/bmw-connecteddrive-terms-us-rev-2026-01-01.pdf`
 ## FACTS: the Spider-Man campaign
 
 - Between July 27 and August 10, 2026, BMW delivered a full-screen "Spider-Man: Brand New Day" (Sony Pictures) promotional experience to the iDrive Control Display of customer vehicles (OS 7, 8, 8.5, 9, X; cars built after July 2020), appearing as a banner on vehicle start.
-- BMW previously publicly described the Control Display as a "private space" that would not become an advertising surface.
+- BMW's senior vice president for connected experience (Stephan Durach) stated on record in December 2023 that BMW would not sell in-car screen space to play a commercial, calling the car a "private space." Attribute to BMW/its executive, NOT to "BMW NA" specifically (the statement came from BMW Group leadership).
+- The campaign ran in more than 70 countries, including Germany and the rest of Europe. EU angle for the why page: regulators mandate third-party access to phones (DMA) but no rule requires automakers to open the infotainment surface, with safety as the stated reason; the same closed-for-safety surface is now monetized. Never claim the EU approved the ads; the claim is the asymmetry.
 - Framing for claims: the promotion is third-party promotional content, not a matter "related to Services" (Section 33). When addressing Section 31.c, follow the HARD RULE above: quote it in full and argue scope (use-of-information vs display authority), never pretend the word "advertising" is not there. Consumer-protection framing: contrast with BMW's prior public statements.
 - NEVER claim the ad was undismissable, that BMW charged owners for it, or that BMW was PAID for the promotion (a media-value estimate of the Sony campaign does not establish payment to BMW). Say "third-party promotional content" or "a promotional partnership", never "paid advertising". Facts only: it appeared on the dashboard of cars people own.
 

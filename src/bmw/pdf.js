@@ -176,8 +176,9 @@ export async function generateNoticePdf(data) {
     "about me; it does not enlarge Section 33's grant of authority over what may be " +
     "displayed on the Control Display, and no provision of the Terms authorizes the " +
     "use of my vehicle's primary control interface as a promotional surface for third " +
-    'parties. BMW NA has also publicly described the Control Display as a private ' +
-    'space that would not become an advertising surface. Delivering third-party ' +
+    "parties. BMW's senior vice president for connected experience also stated " +
+    'publicly in December 2023 that BMW would not sell in-car screen space to play ' +
+    'a commercial, describing the car as a private space. Delivering third-party ' +
     `promotional content to the primary control interface of a vehicle I ${derived.relationshipVerb} ` +
     'therefore gives rise to the following ' +
     'individual claims: (1) breach of contract, including breach of the implied covenant ' +

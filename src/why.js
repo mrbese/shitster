@@ -36,8 +36,9 @@ app.innerHTML = `
         X, built after July 2020.
       </p>
       <p>
-        BMW has previously and publicly described the Control Display as a
-        private space, one that would not become an advertising surface. The
+        In December 2023, BMW's senior vice president for connected experience,
+        Stephan Durach, said on record that BMW would not sell in-car screen
+        space to play a commercial, calling the car a private space. The
         contract those owners already signed does not obviously permit what
         happened. Section 33 of the ConnectedDrive Terms governs dashboard
         communication, authorizing messages to inform owners "about Services,
@@ -62,6 +63,29 @@ app.innerHTML = `
         third-party promotional content on a screen it told the public
         would stay private, on cars people already own, under a contract that
         does not say it can.
+      </p>
+    </section>
+
+    <section>
+      <h2>Too dangerous for your apps, safe enough for their ads.</h2>
+      <p>
+        Regulators, the European Union loudest among them, now require the
+        most personal device you own to accept third-party software: app
+        stores must open, interfaces must interoperate, gatekeepers must let
+        rivals in. Car dashboards got the opposite treatment. No regulation
+        requires an automaker to decouple the infotainment surface from the
+        vehicle's utility functions or to let software the automaker did not
+        bless run on it, and the stated reason is safety. BMW alone decides
+        what runs on iDrive.
+      </p>
+      <p>
+        Then BMW ran a film studio's promotion on that same surface, in more
+        than 70 countries, including the ones whose regulators wrote the
+        safety rationale, including Germany. So the closed dashboard is now
+        the monetized dashboard, and the safety argument is doing double duty
+        as a business model. If the screen is too safety-critical to open to
+        your software, it is too safety-critical to rent to a film studio.
+        Pick one.
       </p>
     </section>
 
