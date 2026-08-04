@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>shitster</title>
+<meta name="description" content="Open-source consumer self-help campaigns. The tool prepares, the human acts. First campaign: DashOff.">
+<style>
+  :root {
+    --ink: #16161a; --paper: #fafaf8; --muted: #6b6b70;
+    --line: #d8d8d4; --accent: #e8541a;
+    --mono: 'SF Mono', ui-monospace, 'Cascadia Code', Menlo, monospace;
+    --sans: -apple-system, 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink: #ececea; --paper: #131316; --muted: #98989e; --line: #2c2c30; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--sans); line-height: 1.65; font-size: 1.0625rem;
+  }
+  main { max-width: 42rem; margin: 0 auto; padding: 4rem 1.25rem 5rem; }
+  .wordmark {
+    font-family: var(--mono); font-size: clamp(2.6rem, 9vw, 4.5rem);
+    font-weight: 700; letter-spacing: -0.04em; margin: 0;
+  }
+  .wordmark .dot { color: var(--accent); }
+  .tagline { font-family: var(--mono); color: var(--muted); margin: 0.5rem 0 3rem; }
+  h2 {
+    font-family: var(--mono); font-size: 0.85rem; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--muted); margin: 3rem 0 1rem;
+    border-top: 1px solid var(--line); padding-top: 1.5rem;
+  }
+  .principle { margin: 1.4rem 0; }
+  .principle strong { display: block; font-size: 1.15rem; letter-spacing: -0.01em; }
+  .principle span { color: var(--muted); }
+  .campaign {
+    display: block; text-decoration: none; color: inherit;
+    border: 2px solid var(--ink); padding: 1.25rem 1.4rem; margin: 1.2rem 0;
+    transition: border-color 120ms ease;
+  }
+  .campaign:hover { border-color: var(--accent); }
+  .campaign .num { font-family: var(--mono); color: var(--accent); font-size: 0.8rem; }
+  .campaign .name { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; }
+  .campaign .desc { color: var(--muted); margin-top: 0.25rem; }
+  .campaign .status { font-family: var(--mono); font-size: 0.8rem; margin-top: 0.6rem; }
+  .campaign .status::before { content: '● '; color: var(--accent); }
+  .soon { border-style: dashed; border-color: var(--line); }
+  .soon .num { color: var(--muted); }
+  a { color: inherit; text-decoration-color: var(--accent); text-decoration-thickness: 2px; }
+  footer {
+    border-top: 1px solid var(--line); margin-top: 3.5rem; padding-top: 1.5rem;
+    font-family: var(--mono); font-size: 0.8rem; color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1 class="wordmark">shitster<span class="dot">.</span></h1>
+  <p class="tagline">Being angry and being precise are not mutually exclusive.</p>
+
+  <p>Somewhere in a contract you never negotiated, a company reserved the right
+  to do the thing that just made you furious. The same contract says you cannot
+  sue together, cannot go to a jury, and must argue alone, in a forum they
+  picked, under rules they wrote and update whenever they like.</p>
+
+  <p>shitster builds small, free, open-source tools that turn one person's anger
+  into the exact paperwork those same contracts already entitle them to. No
+  accounts. No stored data. No fees. Nothing is sent on your behalf.
+  <strong>The tool prepares, the human acts.</strong></p>
+
+  <h2>What we hold</h2>
+  <div class="principle">
+    <strong>Liability should not shrink as harm scales.</strong>
+    <span>When a contract makes it cheaper per person to wrong a million people
+    than to wrong one, that clause is not procedure, it is a volume discount on
+    wrongdoing.</span>
+  </div>
+  <div class="principle">
+    <strong>The drafter of the rules cannot be their beneficiary.</strong>
+    <span>Terms that one side rewrites at will, with opt-out windows that
+    expired before you knew they existed, are not agreements. They are
+    weather.</span>
+  </div>
+  <div class="principle">
+    <strong>Aggregation for me but not for thee is immunity, not procedure.</strong>
+    <span>The same documents that ban class actions mandate batching when it
+    cuts the company's fees. Collective action is either legitimate or it is
+    not. Pick one.</span>
+  </div>
+
+  <h2>Campaigns</h2>
+  <a class="campaign" href="https://dashoff.org">
+    <span class="num">CAMPAIGN 01</span>
+    <div class="name">DashOff</div>
+    <div class="desc">BMW put a movie ad on the dashboards of cars people own,
+    on a screen it once called a private space. Generate your notice of dispute
+    in the browser and mail it yourself. My car is not your billboard.</div>
+    <div class="status">live at dashoff.org</div>
+  </a>
+  <div class="campaign soon">
+    <span class="num">CAMPAIGN 02</span>
+    <div class="name">Your nomination</div>
+    <div class="desc">Every campaign starts with one person reading the fine
+    print angry. If a company deserves a shitster, open an issue with the
+    contract clause and what they did.</div>
+  </div>
+
+  <h2>How it works</h2>
+  <p>Everything runs in your browser. Documents are generated client-side and
+  never touch a server. The code is public, the legal reasoning cites the
+  actual contracts (committed to the repo as evidence), and every claim is
+  reviewed adversarially before it ships. When we are wrong, the issue tracker
+  is right there.</p>
+
+  <footer>
+    <p>open source: <a href="https://github.com/mrbese/shitster">github.com/mrbese/shitster</a>.
+    Nothing here is legal advice. These are self-help tools. You act in your
+    own name, at your own judgment, for your own claim.</p>
+  </footer>
+</main>
+</body>
+</html>
