@@ -59,11 +59,17 @@ app.innerHTML = `
         Asked about the campaign, a BMW spokesperson told Kotaku: "The Festive
         App in the BMW operating system is designed to provide customers with
         optional themed animations and messages linked to a range of global
-        and local occasions. It is not a form of advertising." So the
-        company's position is that a promotion for a film, delivered under a
-        film-partnership Deadline valued at 309 million dollars in media
-        value, is not a form of advertising. We are content to let that
-        sentence argue with itself.
+        and local occasions. It is not a form of advertising." Note what the
+        animation actually does: it ends with a QR code and a note that the
+        film is in cinemas. So the company's position is that a promotion for
+        a film, closing on a scannable link to the film while the film is in
+        theaters, delivered under a film partnership Deadline valued at 309
+        million dollars in media value, is not a form of advertising. We are
+        content to let that sentence argue with itself. And on the money: we
+        make no claim that cash moved for the banner. We do not need to. The
+        same partnership that put BMW's cars in the film put the film in
+        BMW's cars. If that exchange had no commercial value to either side,
+        two marketing departments have some explaining to do.
       </p>
       <p>
         This site is not built on a claim that the ad was undismissable, or that
