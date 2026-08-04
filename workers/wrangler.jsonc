@@ -1,7 +1,10 @@
 {
-  "name": "shitster-counter",
+  "name": "dashoff-counter",
   "main": "counter.js",
-  "compatibility_date": "2026-01-01",
+  "compatibility_date": "2026-07-01",
+  "routes": [
+    { "pattern": "dashoff.org/api/counter", "zone_name": "dashoff.org" }
+  ],
   "durable_objects": {
     "bindings": [
       {
@@ -17,7 +20,7 @@
     }
   ],
   "vars": {
-    "SITE_ORIGIN": "https://your-deployed-site.example",
+    "SITE_ORIGIN": "https://dashoff.org",
     "GOAL": "5000"
   }
 }
