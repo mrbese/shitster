@@ -21,9 +21,11 @@ app.innerHTML = `
     .why-prose .principle { border-left: 3px solid var(--accent); padding-left: 1.1rem; }
     .cta-row { margin-top: 2.5rem; }
     .disclaimer { white-space: pre-line; }
+    .campaign-origin { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); }
   </style>
 
   <h1>Why ${BRAND.campaign} exists</h1>
+  <p class="campaign-origin">Campaign 01 of <a href="https://shitster.org">shitster</a>. The umbrella is the personal manifesto. This page is the BMW-specific case and the action it supports.</p>
 
   <div class="why-prose">
 
@@ -148,140 +150,29 @@ app.innerHTML = `
     </section>
 
     <section>
-      <h2>We are playing their game.</h2>
+      <h2>They wrote two rules about scale.</h2>
       <p>
-        The word salad is deliberate. Call it a Festive App and maybe it is not
-        marketing. Call it a partnership and maybe nobody "sold" anything. This
-        is loophole engineering, and it has been practiced on consumers at
-        scale for decades: the arbitration clause, the class waiver, the
-        pre-expired opt-out window, the batch discount. shitster's answer is
-        not to complain about the game from outside it. It is to read the
-        rulebook they wrote and play it back.
+        The first rule is Section 30.A. The January 2026 revision added an
+        individual Pre-Arbitration Informal Dispute Resolution conference:
+        after BMW receives a completed notice by certified mail, the parties
+        must personally meet by phone or video within 30 days. The Terms say
+        multiple individuals initiating claims cannot share that conference.
+        The October 2023 version did not contain this conference requirement.
       </p>
       <p>
-        Example. The individual conference requirement in Section 30.A, the
-        obligation to "personally meet and confer" with every owner
-        separately, no shared conferences allowed, is brand new. They added
-        it in the January 2026 revision of the Terms, months before this
-        campaign; the October 2023 version had no conference requirement at
-        all.
-        Probably it was added to prevent pooled attacks: to make sure no law
-        firm can herd ten thousand claims through one phone call, to atomize
-        any crowd back into individuals. We say probably because we can read
-        their drafting, not their minds. Fine. Atomized is exactly how we
-        arrive: one owner, one certified letter, one conference, times
-        everyone who is angry. The clause they wrote to make collective action
-        slow now obligates them to take every one of those calls.
+        The second rule arrives later. Section 30.D says that once arbitration
+        demands are filed, BMW may organize up to 100 demands from the same
+        state into a batch with one set of filing fees. The first rule makes
+        the preliminary conversation individual. The second lets later filing
+        administration happen in groups. Both are BMW's rules. DashOff uses
+        the first one exactly as written.
       </p>
       <p>
-        They did not sell the screen. They swapped it. To swap something you
-        first have to decide what it is worth, and BMW decided what its
-        customers' private space was worth: one movie placement. The
-        compensation was not cash; a placement is non-cash material
-        compensation, the kind accounting standards and the FTC's endorsement
-        rules have recognized as payment for decades. Their words, their
-        contract, their game. We are finally playing it too.
-      </p>
-    </section>
-
-    <section>
-      <h2>Too dangerous for your apps, safe enough for their ads.</h2>
-      <p>
-        Regulators, the European Union loudest among them, now require the
-        most personal device you own to accept third-party software: app
-        stores must open, interfaces must interoperate, gatekeepers must let
-        rivals in. Car dashboards got the opposite treatment. No regulation
-        requires an automaker to decouple the infotainment surface from the
-        vehicle's utility functions or to let software the automaker did not
-        bless run on it, and the stated reason is safety. BMW alone decides
-        what runs on iDrive.
-      </p>
-      <p>
-        Then BMW ran a film studio's promotion on that same surface, in more
-        than 70 countries, including the ones whose regulators wrote the
-        safety rationale, including Germany. So the closed dashboard is now
-        the monetized dashboard, and the safety argument is doing double duty
-        as a business model. If the screen is too safety-critical to open to
-        your software, it is too safety-critical to rent to a film studio.
-        Pick one.
-      </p>
-      <p>
-        The timing makes the contradiction literal. The EU's General Safety
-        Regulation requires new vehicles to carry driver-distraction
-        monitoring systems as of July 2026, the same month this campaign
-        started swinging Spider-Man across control displays. One arm of the
-        system is legally required to watch your eyes for distraction. The
-        other arm is supplying it.
-      </p>
-    </section>
-
-    <section>
-      <h2>Two systems, one ad.</h2>
-      <p>
-        The same startup banner reached Munich and Michigan. What owners can do
-        about it splits at the border.
-      </p>
-      <p>
-        In the United States, the arbitration clause holds. The legislative fix,
-        the FAIR Act, passed the House in March 2022, died in the Senate, and
-        has been reintroduced ever since; it is pending right now as S.2799 and
-        H.R.5350. The only carve-out Congress has actually enacted protects
-        sexual assault and harassment claims (2022). Until that changes, the
-        strongest American moves are individual and procedural: the
-        <a href="bmw.html">Section 30.A notice</a>, the
-        <a href="optout.html">30-day opt-out</a> if you are a new owner, and
-        <a href="congress.html">telling your member of Congress</a> to pass the
-        FAIR Act.
-      </p>
-      <p>
-        In the European Union, the wall Americans hit does not exist. Directive
-        93/13 treats contract terms that hinder your right to sue, including
-        boilerplate arbitration clauses, as presumptively unfair. German law
-        goes further: an arbitration agreement with a consumer must be its own
-        separately signed document (ZPO section 1031(5)), so a clause buried in
-        sales terms does not bind you. Germany has had a real collective
-        redress action since October 2023, the Abhilfeklage, and the federal
-        consumer association has already used it. And UWG section 7 prohibits
-        advertising that intrudes into your private sphere against your
-        recognizable wishes, which is a strikingly literal description of a
-        movie ad on a dashboard its maker publicly called a private space.
-        European regulators have even answered the threshold question already:
-        the EDPB's connected-vehicle guidelines classify a car as "terminal
-        equipment" under the ePrivacy Directive, the same protected category
-        as your laptop or phone, where storing content on the device or
-        accessing it requires prior consent unless strictly necessary for a
-        service you requested. A film promotion pushed into a car's storage is
-        strictly necessary for nothing.
-      </p>
-      <p>
-        And one market got neither the ad nor the argument. The Telegraph
-        reported that the animation was not made available to UK owners at
-        all. BMW has not said why. Commentators point at a specific stack of
-        UK law: PECR, under which the ICO treats a connected car as terminal
-        equipment and which, since the Data (Use and Access) Act 2025,
-        carries fines up to 17.5 million pounds or 4 percent of global
-        turnover; the DMCCA 2024, which gave the CMA direct fining powers
-        over aggressive commercial practices; an advertising regulator that
-        banned a BMW ad as recently as February 2024; and the Consumer Rights
-        Act 2015, which treats the car's software as digital content that
-        updates may not degrade. We cannot verify the motive, only the
-        choice. A company that calls something a gift does not usually skip
-        the house with the strictest gift inspection.
-      </p>
-      <p>
-        Here is what surprised us: a week into the campaign, no European
-        consumer body, regulator, or politician had moved. All the visible
-        anger was owners and journalists. Europeans hold the better cards and,
-        so far, nobody is playing them. If you are a European BMW owner, your
-        consumer association can act where you cannot: write to them (in
-        Germany, the vzbv and your regional Verbraucherzentrale). If a
-        qualified entity takes this up anywhere in Europe, we will link it
-        here.
-      </p>
-      <p>
-        Americans got the ad and kept the arbitration clause. Europeans got the
-        ad and kept their courts. Only one of those groups needs a letter
-        generator, and that is why this site exists.
+        We do not claim to know why BMW added the conference clause. We can
+        read the effect: every owner who chooses to send a compliant notice has
+        an individual process that cannot be shared. DashOff is not a mass
+        arbitration scheme. It prepares one owner's document in that owner's
+        browser. The owner decides whether to print, sign, and mail it.
       </p>
     </section>
 
@@ -291,25 +182,21 @@ app.innerHTML = `
         <p>
           The same Terms that require an individual conference for every notice
           of dispute (Section 30.A) also let BMW batch arbitration demands once
-          they are filed: Section 30.D groups demands 100 to a batch, one set of
-          filing fees per batch. Filing fees are volume-priced for BMW. An
-          individual conference is not.
+          they are filed. Section 30.D groups up to 100 demands from the same
+          state into a batch with one set of filing fees. The contract creates
+          a group price for later filing administration. It does not create a
+          shared conference at the earlier notice stage.
         </p>
         <p>
-          Run the arithmetic on the batches. Up to one hundred demands per
-          batch, grouped by state of residence, one set of filing fees per
-          batch. Harm 90 people in one state: one batch. Harm 190 there: two.
-          In between, nothing moves. The 101st person BMW wrongs in that state
-          costs it a new set of fees, and persons 102 through 200 cost it
-          nothing at all. Under this clause, the marginal price of wronging
-          another hundred people is zero. Sharper still: a hundred owners who
-          each arbitrated alone would cost BMW a hundred sets of fees. The
-          same hundred, batched under Section 30.D, can cost one. The crowd
-          itself is the discount. A company that harms more people faces less
-          exposure per person, by design, in a document the company wrote.
+          The arithmetic makes the moral problem visible. Under the batching
+          rule, 90 same-state demands can be one batch and 190 can be two. So
+          can 101 and 190. That does not tell us BMW's total cost, damages, or
+          outcome. It does show that the number of filing-fee sets moves in
+          steps while the number of people moves one by one. The crowd becomes
+          an administrative discount in a document the company wrote.
         </p>
         <p>
-          Courts police this only by degree. Verizon's batches of ten,
+          Courts have policed this only by degree. Verizon's batches of ten,
           processed one at a time, were struck down. Ticketmaster's bespoke
           mass-arbitration protocol was struck down. So BMW drafted one
           hundred, in parallel, with tolling, calibrated to survive. We think
@@ -347,21 +234,16 @@ app.innerHTML = `
           before any dispute exists.
         </p>
         <p>
-          The deeper problem with unilateral revision is what it does to the
-          baseline. Every version we accept becomes the floor the next version
-          is measured against. In 2011 the class-action waiver was the
+          The deeper problem with unilateral revision is the normalization
+          ratchet. Every version we accept becomes the floor the next version
+          is measured against. In 2011 the class-action waiver was an
           aggressive novelty; it is now boilerplate nobody blinks at. The mass
           action waiver arrived next, then batching. If batches of 100 hold,
-          nothing stops the next revision from trying 250, and the revision
-          after that from measuring itself against 250 instead of against
-          zero. The psychology is ordinary normalization: no single step ever
-          feels worth fighting, and the total distance traveled never appears
-          on any page you signed. Milgram's subjects were never asked to
-          throw the 450-volt switch first. They were asked for fifteen more
-          volts than last time, every time. Contract drafting by annual
-          increment works on the same principle, and the only known defense
-          is the same in both cases: someone has to refuse a step that looks,
-          in isolation, too small to refuse.
+          the next draft can try 250, and the one after that can measure itself
+          against 250 instead of against zero. No single step looks large enough
+          to fight. The accumulated distance never appears on any page you
+          signed. The answer is to refuse the small step before it becomes the
+          new normal.
         </p>
       </div>
     </section>
