@@ -18,4 +18,4 @@ When adding a conditional, test both paths. When fixing a behavior bug, add a re
 - Staging: none
 - Custom deploy hooks: none
 
-The workflow rebuilds the merged commit and records its GitHub SHA on both the `dashoff` and `shitster` Pages deployments. The `dashoff-counter` Worker is deployed separately and must not be changed by a Pages-only release.
+The workflow rebuilds the pushed `main` commit and records its GitHub SHA on both the `dashoff` and `shitster` Pages deployments. The `dashoff-counter` Worker is deployed separately and must not be changed by a Pages-only release.
