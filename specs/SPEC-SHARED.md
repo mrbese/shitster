@@ -8,7 +8,7 @@ Every builder agent must read this file first. Deviating from the FACTS section 
 - Import naming from `src/shared/brand.js`. Never hardcode the campaign name in JS.
 - Every page starts with `mountChrome()` from `src/shared/ui.js` and renders into `<main id="app">`.
 - Design: use only tokens from `src/shared/style.css`. Monochrome plus the single orange accent. No new colors, no gradients, no external fonts, no CDN scripts, no analytics, no cookies. Everything self-contained and client-side.
-- Core thesis, repeated where relevant: **the tool prepares, the human acts.** This site never sends, files, stores, or transmits anything on a user's behalf. All document generation happens in the browser. No form field content ever leaves the page.
+- Core thesis, repeated where relevant: **the tool prepares, the human acts.** This site never sends, files, or stores anything on a user's behalf. All document generation happens in the browser. Form fields stay on the page except when the user explicitly submits an address to the optional Census district lookup; disclose that transfer beside the lookup before submission.
 
 ## Writing rules (hard)
 

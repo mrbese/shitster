@@ -1,4 +1,5 @@
 import { mountChrome } from '../shared/ui.js'
+import { escapeHtml, safeHttpUrl, safePhoneUrl } from '../shared/safe.js'
 import { BRAND } from '../shared/brand.js'
 import {
   STATE_NAMES,
@@ -265,21 +266,23 @@ function partyLine(term) {
 }
 
 function memberWebform(term) {
-  return term.contact_form || term.url || ''
+  return safeHttpUrl(term.contact_form) || safeHttpUrl(term.url)
 }
 
 function renderMemberSummaryCard(entry) {
   const { member, term, title } = entry
   const name = displayName(member)
   const phone = term.phone || ''
+  const phoneUrl = safePhoneUrl(phone)
   const webform = memberWebform(term)
+  const district = Number.isInteger(term.district) ? term.district : ''
   return `
     <div>
-      <h3>${title} ${name}</h3>
-      <p>${partyLine(term)}${term.type === 'rep' && term.district ? ` &middot; district ${term.district}` : ''}</p>
+      <h3>${escapeHtml(title)} ${escapeHtml(name)}</h3>
+      <p>${escapeHtml(partyLine(term))}${term.type === 'rep' && district ? ` &middot; district ${district}` : ''}</p>
       <p>
-        ${phone ? `Phone: <a href="tel:${phone}">${phone}</a>` : 'No phone on file'}
-        ${webform ? ` &middot; <a href="${webform}" target="_blank" rel="noopener">website / webform</a>` : ''}
+        ${phone ? `Phone: ${phoneUrl ? `<a href="${escapeHtml(phoneUrl)}">${escapeHtml(phone)}</a>` : escapeHtml(phone)}` : 'No phone on file'}
+        ${webform ? ` &middot; <a href="${escapeHtml(webform)}" target="_blank" rel="noopener">website / webform</a>` : ''}
       </p>
     </div>
   `
@@ -382,12 +385,12 @@ function renderMemberActions(entries, extra) {
   }
   membersActions.innerHTML = entries
     .map((entry) => {
-      const id = entry.member.id.bioguide
+      const id = String(entry.member.id.bioguide || '')
       const name = displayName(entry.member)
-      const officialUrl = entry.term.url || entry.term.contact_form || ''
+      const officialUrl = safeHttpUrl(entry.term.url) || safeHttpUrl(entry.term.contact_form)
       return `
-        <div class="member-action" data-bioguide="${id}">
-          <h3>${entry.title} ${name}</h3>
+        <div class="member-action" data-bioguide="${escapeHtml(id)}">
+          <h3>${escapeHtml(entry.title)} ${escapeHtml(name)}</h3>
           <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
             <button type="button" data-action="call">Copy call script</button>
             <button type="button" data-action="letter-copy">Copy letter text</button>
@@ -395,7 +398,7 @@ function renderMemberActions(entries, extra) {
           </div>
           <p class="field-help">
             If you download the letter PDF, mail it to the district office nearest
-            you.${officialUrl ? ` Office addresses are listed on the official website: <a href="${officialUrl}" target="_blank" rel="noopener">${officialUrl}</a>.` : ''}
+            you.${officialUrl ? ` Office addresses are listed on the official website: <a href="${escapeHtml(officialUrl)}" target="_blank" rel="noopener">${escapeHtml(officialUrl)}</a>.` : ''}
           </p>
           <p class="action-status" style="min-height:1.4em; font-size:0.85rem; color:var(--muted);"></p>
           <textarea class="preview" rows="6" readonly style="display:none;"></textarea>
