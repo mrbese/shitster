@@ -22,13 +22,13 @@ your behalf.
 ## The three tools
 
 - **`/bmw.html`, notice of dispute.** Walks through Section 30.A of the
-  ConnectedDrive Terms, then generates a signed, ready-to-mail notice of
+  ConnectedDrive Terms, then generates a ready-to-print notice of
   dispute PDF addressed to BMW's Customer Relations office, with your own
-  free-text statement of what happened, in your own words.
+  free-text statement of what happened, in your own words. You print and sign it.
 - **`/optout.html`, arbitration opt-out.** For owners still inside the
   30-day window under Section 30.B. Computes your exact postmark deadline
   from the date you first accepted a BMW arbitration provision, and
-  generates a signed opt-out letter. Tells you plainly when that window has
+  generates a ready-to-print opt-out letter for you to sign. Tells you plainly when that window has
   already closed instead of pretending otherwise.
 - **`/congress.html`, tell Congress.** Looks up your representative and two
   senators from a vendored public dataset, and generates a call script, a
@@ -82,12 +82,13 @@ started to notice this same one-sided-aggregation pattern elsewhere.
 - **Client-side PDF generation.** All letters are built in the browser with
   [`pdf-lib`](https://github.com/Hopding/pdf-lib), using standard embedded
   fonts. Nothing you type is transmitted anywhere to produce a document.
-- **Zero-PII design.** Form state lives in page memory only, never in
+- **Data-minimizing design.** Form state lives in page memory only, never in
   `localStorage` or a cookie, and is discarded on reload. The only network
-  calls the tools make are to a vendored, public congressional dataset, the
-  US Census geocoder (for district lookup, and only the address string you
-  submit for that lookup), and the pledge counter, none of which carry your
-  name, letter contents, or any other personal data.
+  calls the tools make are to the US Census geocoder (only when you explicitly
+  submit an address for the optional district lookup) and the pledge counter.
+  The counter carries no form data. The congressional dataset is bundled with
+  the site. Your name, contact fields, letter contents, and generated PDFs are
+  not transmitted.
 - **Vendored civic data.** `/congress.html` resolves your representative and
   senators from a committed snapshot of the public-domain
   `unitedstates/congress-legislators` dataset, so the tool works without a

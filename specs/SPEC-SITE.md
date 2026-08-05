@@ -28,7 +28,8 @@ if already past, say so honestly and point to /bmw.html instead). Generate a sho
 opt-out letter PDF (pdf-lib) to: BMW of North America, LLC, Attn: Customer Relations,
 PO Box 1227, Westwood NJ 07675-1227, stating non-agreement to the Agreement to
 Arbitrate, including the four required fields, with a hand-signature line (Section
-30.B requires the individual's own signature). Instruct: mail with a postmark before
+30.B does not list a signature requirement; recommend signing as a prudent way to
+authenticate the letter). Instruct: mail with a postmark before
 the deadline, keep proof of mailing.
 
 ## why.html (src/why.js)
