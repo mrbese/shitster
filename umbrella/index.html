@@ -3,160 +3,163 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>shitster</title>
-<meta name="description" content="Every big brand should carry a shitster budget. Open-source consumer self-help campaigns, run by Omer Bese. First campaign: DashOff.">
+<title>shitster: Ranting is not enough</title>
+<meta name="description" content="A personal manifesto about turning a rant into an action. DashOff is the first Shitster campaign.">
 <style>
   :root {
-    --ink: #16161a; --paper: #fafaf8; --muted: #6b6b70;
-    --line: #d8d8d4; --accent: #e8541a;
-    --mono: 'SF Mono', ui-monospace, 'Cascadia Code', Menlo, monospace;
-    --sans: -apple-system, 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    --ink: #171618;
+    --paper: #f4f0e8;
+    --quiet: #625f5c;
+    --rule: #c9c1b5;
+    --signal: #de4d20;
+    --display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --mono: "SF Mono", "Cascadia Code", Menlo, monospace;
   }
   @media (prefers-color-scheme: dark) {
-    :root { --ink: #ececea; --paper: #131316; --muted: #98989e; --line: #2c2c30; }
+    :root { --ink: #f1ece3; --paper: #181719; --quiet: #b7afa5; --rule: #494541; }
+    a:visited { color: #efc5a6; }
   }
   * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--paper); color: var(--ink);
-    font-family: var(--sans); line-height: 1.65; font-size: 1.0625rem;
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--display); font-size: 1.125rem; line-height: 1.55; }
+  a { color: inherit; text-decoration-color: var(--signal); text-decoration-thickness: 2px; text-underline-offset: 0.16em; }
+  a:visited { color: #765338; }
+  .shell { max-width: 72rem; margin: 0 auto; padding: 1.25rem 1.25rem 5rem; }
+  nav { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font: 700 0.76rem/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
+  nav a { text-decoration: none; }
+  .mark { font-size: 1rem; letter-spacing: -0.05em; text-transform: lowercase; }
+  .mark i { color: var(--signal); font-style: normal; }
+  .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: flex-end; }
+  .hero { max-width: 59rem; padding: clamp(5rem, 14vw, 10rem) 0 clamp(4rem, 10vw, 7rem); }
+  .eyebrow, .section-kicker { font: 0.76rem/1.3 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--quiet); }
+  h1 { max-width: 12ch; margin: 0.75rem 0 1.4rem; font: 700 clamp(4rem, 12vw, 9.4rem)/0.88 var(--display); letter-spacing: -0.075em; }
+  .hero p { max-width: 36rem; margin: 0; font-size: clamp(1.35rem, 2.8vw, 2rem); line-height: 1.22; letter-spacing: -0.025em; }
+  .actions { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 2.25rem; }
+  .button { display: inline-block; border: 2px solid var(--ink); padding: 0.74rem 1rem; font: 700 0.82rem/1 var(--mono); text-decoration: none; letter-spacing: 0.02em; }
+  .button.primary { background: var(--signal); border-color: var(--signal); color: #fff; }
+  .button:hover, .button:focus-visible { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+  .button:focus-visible, a:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; }
+  .manifesto { display: grid; grid-template-columns: minmax(0, 1fr) minmax(13rem, 23rem); gap: clamp(2rem, 7vw, 7rem); border-top: 1px solid var(--rule); padding: 2rem 0 5rem; }
+  .manifesto h2, .wide h2 { margin: 0; font: 700 clamp(2rem, 4.4vw, 3.7rem)/0.98 var(--display); letter-spacing: -0.05em; }
+  .manifesto .copy { max-width: 37rem; }
+  .manifesto .copy p:first-child { margin-top: 0; }
+  .manifesto strong { color: var(--signal); }
+  .wide { border-top: 1px solid var(--rule); padding: 2rem 0 5rem; }
+  .budget { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(15rem, 0.95fr); gap: clamp(2rem, 8vw, 9rem); align-items: start; }
+  .budget p { max-width: 34rem; margin: 0 0 1.1rem; }
+  .budget .pull { padding: 1.25rem 0 0 1.25rem; border-left: 4px solid var(--signal); font-size: 1.4rem; line-height: 1.26; }
+  .campaign { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1rem 1.4rem; margin-top: 2rem; padding: 1.35rem 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); text-decoration: none; }
+  .campaign:hover .campaign-title { color: var(--signal); }
+  .campaign-num { font: 0.73rem/1.3 var(--mono); color: var(--signal); padding-top: 0.3rem; }
+  .campaign-title { margin: 0; font: 700 clamp(2.3rem, 5vw, 4.6rem)/0.92 var(--display); letter-spacing: -0.06em; }
+  .campaign p { max-width: 42rem; margin: 0.8rem 0 0; }
+  .campaign-meta { margin-top: 1.1rem; font: 0.76rem/1.3 var(--mono); color: var(--quiet); text-transform: uppercase; letter-spacing: 0.05em; }
+  .ledger { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2rem; margin-top: 2rem; }
+  .ledger article { border-top: 1px solid var(--rule); padding: 1.1rem 0 1.5rem; }
+  .ledger h3 { margin: 0; font: 700 1.45rem/1 var(--display); letter-spacing: -0.03em; }
+  .ledger p { margin: 0.55rem 0 0; color: var(--quiet); }
+  footer { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; border-top: 1px solid var(--rule); padding-top: 1.5rem; color: var(--quiet); font: 0.75rem/1.45 var(--mono); }
+  @media (max-width: 680px) {
+    .shell { padding-inline: 1rem; }
+    .hero { padding-top: 5rem; }
+    .manifesto, .budget { grid-template-columns: 1fr; gap: 1.5rem; }
+    .ledger { grid-template-columns: 1fr; }
+    .campaign { grid-template-columns: 1fr; gap: 0.3rem; }
+    .campaign-num { padding-top: 0; }
   }
-  main { max-width: 42rem; margin: 0 auto; padding: 4rem 1.25rem 5rem; }
-  .wordmark {
-    font-family: var(--mono); font-size: clamp(2.6rem, 9vw, 4.5rem);
-    font-weight: 700; letter-spacing: -0.04em; margin: 0;
-  }
-  .wordmark .dot { color: var(--accent); }
-  .tagline { font-family: var(--mono); color: var(--muted); margin: 0.5rem 0 3rem; }
-  h2 {
-    font-family: var(--mono); font-size: 0.85rem; text-transform: uppercase;
-    letter-spacing: 0.12em; color: var(--muted); margin: 3rem 0 1rem;
-    border-top: 1px solid var(--line); padding-top: 1.5rem;
-  }
-  .principle { margin: 1.4rem 0; }
-  .principle strong { display: block; font-size: 1.15rem; letter-spacing: -0.01em; }
-  .principle span { color: var(--muted); }
-  .campaign {
-    display: block; text-decoration: none; color: inherit;
-    border: 2px solid var(--ink); padding: 1.25rem 1.4rem; margin: 1.2rem 0;
-    transition: border-color 120ms ease;
-  }
-  .campaign:hover { border-color: var(--accent); }
-  .campaign .num { font-family: var(--mono); color: var(--accent); font-size: 0.8rem; }
-  .campaign .name { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; }
-  .campaign .desc { color: var(--muted); margin-top: 0.25rem; }
-  .campaign .status { font-family: var(--mono); font-size: 0.8rem; margin-top: 0.6rem; }
-  .campaign .status::before { content: '● '; color: var(--accent); }
-  .soon { border-style: dashed; border-color: var(--line); }
-  .soon .num { color: var(--muted); }
-  a { color: inherit; text-decoration-color: var(--accent); text-decoration-thickness: 2px; }
-  footer {
-    border-top: 1px solid var(--line); margin-top: 3.5rem; padding-top: 1.5rem;
-    font-family: var(--mono); font-size: 0.8rem; color: var(--muted);
-  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .button:hover, .button:focus-visible { transform: none; box-shadow: none; } }
 </style>
 </head>
 <body>
-<main>
-  <h1 class="wordmark">shitster<span class="dot">.</span></h1>
-  <p class="tagline">Being angry and being precise are not mutually exclusive.</p>
+  <div class="shell">
+    <nav aria-label="Primary navigation">
+      <a class="mark" href="#top">shitster<i>.</i></a>
+      <div class="nav-links">
+        <a href="#manifesto">Manifesto</a>
+        <a href="#campaigns">Campaigns</a>
+        <a href="https://github.com/mrbese/shitster">GitHub</a>
+      </div>
+    </nav>
 
-  <p><strong>Every big brand should carry a shitster budget.</strong> I believe
-  that completely. A line item, right next to legal: provision for customers who
-  actually read the contract. If your margin depends on ten thousand people
-  never using the rights your own lawyers wrote down, I am not a troublemaker.
-  I am an unpriced risk.</p>
+    <main id="top">
+      <header class="hero">
+        <div class="eyebrow">A personal action project</div>
+        <h1>Ranting is not enough.</h1>
+        <p>If something unfair keeps bothering me, I want to do more than be right about it. I want to make an action out of it.</p>
+        <div class="actions">
+          <a class="button primary" href="https://dashoff.org">See the first campaign: DashOff</a>
+          <a class="button" href="#manifesto">Read the manifesto</a>
+        </div>
+      </header>
 
-  <p>Unfairness annoys me. Doesn't matter if it lands on me or on someone I
-  will never meet. I can't help it, I have stopped trying to help it, and at
-  some point I decided to stop treating that as a personality flaw and start
-  treating it as a roadmap.</p>
+      <section class="manifesto" id="manifesto" aria-labelledby="manifesto-title">
+        <div>
+          <div class="section-kicker">The manifesto</div>
+          <h2 id="manifesto-title">Anger is a signal. Action is the point.</h2>
+        </div>
+        <div class="copy">
+          <p>shitster started with something that happened to me. BMW put a movie promotion on the dashboard of a car I own. I could have written a rant. Instead, I made <a href="https://dashoff.org">DashOff</a>.</p>
+          <p>Then I noticed that the feeling did not stop at my car. It shows up whenever somebody uses a contract, a regulation, a safety argument, or plain institutional inertia to make an unfair thing look inevitable.</p>
+          <p><strong>I do not think a practice becomes fair because the target is big, foreign, unpopular, or capable of fighting back.</strong> If it bothers me when it happens to a consumer, it still bothers me when it happens to an outsider, a challenger, or a company.</p>
+        </div>
+      </section>
 
-  <p>And I love legal arbitrage. Genuinely, as a subject. The gap between what
-  a rule was written for and what a rule permits is where every interesting
-  fight lives. Companies figured this out long before I did: the arbitration
-  clause, the class waiver, the batching schedule, the opt-out window that
-  expired before you knew it opened. That is legal arbitrage run against
-  consumers, at scale, on retainer. shitster is the same craft pointed the
-  other way. They wrote the clauses. We read them. Every tool here turns one
-  person's anger into the exact paperwork those same contracts already entitle
-  them to. No accounts. No stored data. No fees. Nothing is sent on your
-  behalf. <strong>The tool prepares, the human acts.</strong></p>
+      <section class="wide" aria-labelledby="budget-title">
+        <div class="section-kicker">The shitster budget</div>
+        <div class="budget">
+          <div>
+            <h2 id="budget-title">Every company should expect one.</h2>
+          </div>
+          <div>
+            <p>A shitster budget is money, time, and stubbornness reserved for pushing back when somebody turns legality into a shield for unfairness.</p>
+            <p>It can fund research, a small independent venture, a claim, a public record, or a campaign. The form is not the point. The point is refusing to treat a bad rule as the end of the conversation.</p>
+            <p class="pull">The people who write the rules have been using legal arbitrage for years. Reading the rulebook and answering back is not a dirty trick. It is the whole idea.</p>
+          </div>
+        </div>
+      </section>
 
-  <h2>What I hold</h2>
-  <div class="principle">
-    <strong>Liability should not shrink as harm scales.</strong>
-    <span>When a contract makes it cheaper per person to wrong a million people
-    than to wrong one, that clause is not procedure, it is a volume discount on
-    wrongdoing.</span>
+      <section class="wide" aria-labelledby="two-face-title">
+        <div class="section-kicker">A recurring test</div>
+        <div class="budget">
+          <div><h2 id="two-face-title">The two-face test.</h2></div>
+          <div>
+            <p>I pay attention when a rule is sold as universal but stops at the boundary of somebody else's industry, safety rationale, or commercial interest.</p>
+            <p>Interoperability can be a public principle for an integrated digital platform, then a safety question for an integrated vehicle system. A charging standard can be environmental necessity in one product category and disappear in another. I am interested in the gap between those explanations.</p>
+            <p>This is not a list of conclusions pretending to be campaigns. It is a test: <em>if this principle is real, why does it stop here?</em></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="wide" id="campaigns" aria-labelledby="campaigns-title">
+        <div class="section-kicker">Campaigns</div>
+        <h2 id="campaigns-title">The first action.</h2>
+        <a class="campaign" href="https://dashoff.org">
+          <div class="campaign-num">Campaign 01</div>
+          <div>
+            <h3 class="campaign-title">DashOff</h3>
+            <p>My car is not your billboard. DashOff gives BMW owners the exact self-help documents needed to use the dispute process BMW wrote into its own terms.</p>
+            <div class="campaign-meta">BMW dashboard promotion · campaign and tools at dashoff.org →</div>
+          </div>
+        </a>
+      </section>
+
+      <section class="wide" aria-labelledby="ledger-title">
+        <div class="section-kicker">Things I have not stopped thinking about</div>
+        <h2 id="ledger-title">A rant can be an unfinished brief.</h2>
+        <div class="ledger">
+          <article><h3>Clapback</h3><p>When “safety,” “compatibility,” or “industry practice” is doing more work than the explanation deserves.</p></article>
+          <article><h3>We can figure it out later</h3><p>A legal blind spot worth naming before somebody normalizes it into the baseline.</p></article>
+          <article><h3>I do not know how to figure it out</h3><p>An open question is still worth keeping in public view until somebody finds the leverage.</p></article>
+          <article><h3>I have not thought about it yet</h3><p>The next unfair thing that stays annoying long enough to deserve more than a rant.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Not legal advice. I'm not a lawyer. It's just a personal rant.</span>
+      <span>shitster is run by <a href="https://mrbese.com">Omer Bese</a>.</span>
+      <span>Personal project. Open source at <a href="https://github.com/mrbese/shitster">github.com/mrbese/shitster</a>.</span>
+    </footer>
   </div>
-  <div class="principle">
-    <strong>The drafter of the rules cannot be their beneficiary.</strong>
-    <span>Terms that one side rewrites at will, with opt-out windows that
-    expired before you knew they existed, are not agreements. They are
-    weather.</span>
-  </div>
-  <div class="principle">
-    <strong>Aggregation for me but not for thee is immunity, not procedure.</strong>
-    <span>The same documents that ban class actions mandate batching when it
-    cuts the company's fees. Collective action is either legitimate or it is
-    not. Pick one.</span>
-  </div>
-
-  <h2>Exhibit: the referee playing striker</h2>
-  <p>The European Union writes consumer protection like it invented the genre,
-  and I agree with half of it. USB-C on everything: correct, I hated the cable
-  drawer too. But read Directive 2022/2380's category list. Phones, tablets,
-  cameras, headphones, e-readers, keyboards, mice. It stops, precisely, where
-  Europe's own brands live. My Philips Sonicare still charges on a proprietary
-  puck, legally, because personal-care devices never made the list. The common
-  charger rule reached Cupertino and somehow never made it to Amsterdam.</p>
-
-  <p>Same move, bigger stakes. The Digital Markets Act forces "gatekeepers" to
-  open their platforms to third parties. The first six companies designated:
-  Alphabet, Amazon, Apple, ByteDance, Meta, Microsoft. Notice a pattern. Now
-  try running a third-party app on a European MRI console. Try pulling your own
-  telemetry out of a European wind turbine you bought without paying its
-  manufacturer for the privilege. Try getting your house switches to take
-  orders from software the building industry did not bless. Interoperability
-  is a human right when the closed interface is American, and a safety feature
-  when it is European. That two-facedness has nothing to do with me personally.
-  It annoys me anyway. Especially then.</p>
-
-  <p>An open interface mandate is a consumer rights law disguised as a tech
-  regulation, or it is an industrial policy disguised as a consumer rights law.
-  You can tell which one you are reading by checking who is exempt.</p>
-
-  <h2>Campaigns</h2>
-  <a class="campaign" href="https://dashoff.org">
-    <span class="num">CAMPAIGN 01</span>
-    <div class="name">DashOff</div>
-    <div class="desc">BMW put a movie ad on the dashboards of cars people own,
-    on a screen it once called a private space. Generate your notice of dispute
-    in the browser and mail it yourself. My car is not your billboard.</div>
-    <div class="status">live at dashoff.org</div>
-  </a>
-  <div class="campaign soon">
-    <span class="num">CAMPAIGN 02</span>
-    <div class="name">Your nomination</div>
-    <div class="desc">Every campaign starts with one person reading the fine
-    print angry. If a company deserves a shitster, open an issue with the
-    contract clause and what they did.</div>
-  </div>
-
-  <h2>How it works</h2>
-  <p>Everything runs in your browser. Documents are generated client-side and
-  never touch a server. The code is public, the legal reasoning cites the
-  actual contracts (committed to the repo as evidence), and every claim is
-  reviewed adversarially before it ships. When we are wrong, the issue tracker
-  is right there.</p>
-
-  <footer>
-    <p>Not legal advice. I'm not a lawyer. It's just a personal rant.
-    shitster is run by <a href="https://mrbese.com">Omer Bese</a>. Open
-    source: <a href="https://github.com/mrbese/shitster">github.com/mrbese/shitster</a>.
-    Nothing here is legal advice. These are self-help tools. You act in your
-    own name, at your own judgment, for your own claim.</p>
-  </footer>
-</main>
 </body>
 </html>
