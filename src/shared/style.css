@@ -43,6 +43,8 @@ label { display: block; font-size: 0.85rem; font-family: var(--mono); margin: 1.
   font-size: 0.85rem; color: var(--muted); border-left: 3px solid var(--line);
   padding: 0.5rem 0.9rem; margin: 2rem 0;
 }
+.docx-download { border-top: 1px solid var(--line); margin-top: 2rem; padding-top: 1.5rem; }
+.docx-download h3 { font-size: 1.1rem; margin: 0 0 0.5rem; }
 nav.site {
   display: flex; gap: 1.25rem; flex-wrap: wrap; align-items: baseline;
   max-width: var(--max); margin: 0 auto; padding: 1.1rem 1.25rem;

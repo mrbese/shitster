@@ -18,6 +18,15 @@ Read SPEC-SHARED.md first. You own only `bmw.html` and files under `src/bmw/`.
    and a free-text personal statement textarea labeled:
    "In your own words: what happened and why you object. Your words, not ours.
    This is the part BMW's lawyers cannot call a form letter."
+
+   Every field is optional. No `required` attributes. Presence is never checked;
+   only format is checked, and only when a value is present (`validateVinIfPresent`,
+   `validateAdDateIfPresent`, `validateAmountIfPresent` in `validate.js`, each a
+   no-op on a blank value). A blank field renders as a blank line to fill in by
+   hand (or in Word) rather than blocking generation. The one exception is the
+   free-text personal statement: SPEC-SHARED.md's no-algorithmic-variation rule
+   means a blank statement is never replaced with placeholder prose, only with
+   ruled blank lines to write on (`letter.js`'s `BLANK`, five lines).
 3. **Generate**: client-side PDF via pdf-lib (import from 'pdf-lib'). Letter-size,
    1-inch margins, embedded standard fonts (Helvetica or TimesRoman). Filename:
    `notice-of-dispute-bmw-<lastname>.pdf`. Also a "print instructions" section after
@@ -25,6 +34,18 @@ Read SPEC-SHARED.md first. You own only `bmw.html` and files under `src/bmw/`.
    address; keep the receipt; expect contact within 30 days of delivery; links to
    mailform.io, sendcertifiedmail.com, letterstream.com described as independent
    USPS-integrated services the user pays and uses under their own account.
+4. **Or download as .docx**: a second, independent action below the Generate
+   button, gated by nothing (no format validation, no error box). Reads whatever
+   is currently in the form (partial or entirely blank) and renders the same
+   `letter.js` model as an editable Word document (`docx` package, `Packer.toBlob`,
+   lazy-imported so the library is never fetched by the plain-PDF flow) for anyone
+   who would rather not type any of this into a browser. Filename:
+   `notice-of-dispute-bmw-<lastname>.docx`. Does not bump the pledge counter; the
+   counter's own copy defines it as PDFs generated, not docx downloads.
+
+`letter.js` is the single source of the letter's text and blank-filling logic,
+imported by both `pdf.js` and `docx.js`, so the two output formats can never
+drift out of sync on the operative legal text.
 
 No data leaves the browser. State lives in memory only. Explicitly no localStorage
 for PII. The pledge counter fetch carries no user data.
@@ -108,8 +129,12 @@ and the note "sign by hand before mailing").
 
 - `npm run build` passes; page works from `dist/` output with no network calls
   except `/counter.json`.
-- PDF downloads with all placeholders filled, no "[" left in output, wraps long
-  personal statements across pages correctly.
-- VIN validation rejects I/O/Q and wrong lengths with a plain-English error.
+- PDF downloads with all placeholders filled or blanked, no "[" left in output,
+  wraps long personal statements across pages correctly. Generation succeeds with
+  every field left blank.
+- VIN validation rejects I/O/Q and wrong lengths with a plain-English error, but
+  only when a VIN is typed; blank is always valid.
+- The docx download works with any mix of filled and blank fields, without
+  triggering the PDF's WinAnsi character check.
 - Disclaimer block present. No em dashes anywhere. One-year deadline (Section 28.f)
   mentioned in the explain step.

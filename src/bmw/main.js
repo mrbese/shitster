@@ -3,10 +3,9 @@ import { BRAND } from '../shared/brand.js'
 import { STATES } from './states.js'
 import {
   normalizeVin,
-  validateVin,
-  validateAdDate,
-  validateAmount,
-  requireField,
+  validateVinIfPresent,
+  validateAdDateIfPresent,
+  validateAmountIfPresent,
   findUnsupportedPdfChars,
   AD_WINDOW_MIN,
   AD_WINDOW_MAX
@@ -72,58 +71,61 @@ app.innerHTML = `
   <section id="step-form" hidden>
     <h2>Your information</h2>
     <p>
-      Nothing you type here leaves this page. The PDF is built in your
-      browser and nothing is saved once you close the tab.
+      Every field below is optional. Type what you're comfortable with.
+      Leave the rest blank and it prints as a line to fill in by hand.
+      Nothing you type leaves this page. Rather not type any of it here?
+      Skip to the Word document at the bottom and fill in the whole thing
+      by hand or in Word.
     </p>
     <form id="notice-form" novalidate>
       <div id="form-errors" role="alert"></div>
 
       <label for="fullName">Full name</label>
-      <input id="fullName" name="fullName" type="text" autocomplete="name" required>
+      <input id="fullName" name="fullName" type="text" autocomplete="name">
 
       <label for="street">Street address</label>
-      <input id="street" name="street" type="text" autocomplete="street-address" required>
+      <input id="street" name="street" type="text" autocomplete="street-address">
 
       <label for="city">City</label>
-      <input id="city" name="city" type="text" autocomplete="address-level2" required>
+      <input id="city" name="city" type="text" autocomplete="address-level2">
 
       <label for="addressState">State</label>
-      <select id="addressState" name="addressState" required>
+      <select id="addressState" name="addressState">
         <option value="" disabled selected>Select a state</option>
         ${addressStateOptions}
       </select>
 
       <label for="zip">ZIP code</label>
-      <input id="zip" name="zip" type="text" autocomplete="postal-code" required>
+      <input id="zip" name="zip" type="text" autocomplete="postal-code">
 
       <label for="email">Email</label>
-      <input id="email" name="email" type="email" autocomplete="email" required>
+      <input id="email" name="email" type="email" autocomplete="email">
 
       <label for="phone">Phone</label>
-      <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+      <input id="phone" name="phone" type="tel" autocomplete="tel">
 
       <label for="vin">Vehicle Identification Number (VIN)</label>
-      <input id="vin" name="vin" type="text" maxlength="17" required
+      <input id="vin" name="vin" type="text" maxlength="17"
         placeholder="17 characters, no I, O, or Q">
 
       <label for="adDate">Date the ad first appeared on your dashboard</label>
       <input id="adDate" name="adDate" type="date"
-        min="${AD_WINDOW_MIN}" max="${AD_WINDOW_MAX}" value="${AD_WINDOW_MIN}" required>
+        min="${AD_WINDOW_MIN}" max="${AD_WINDOW_MAX}" value="${AD_WINDOW_MIN}">
 
       <label for="ownership">Ownership type</label>
-      <select id="ownership" name="ownership" required>
+      <select id="ownership" name="ownership">
         <option value="own">I own the vehicle</option>
         <option value="lease">I lease the vehicle</option>
       </select>
 
       <label for="residenceState">State of residence</label>
-      <select id="residenceState" name="residenceState" required>
+      <select id="residenceState" name="residenceState">
         <option value="" disabled selected>Select a state</option>
         ${residenceStateOptions}
       </select>
 
       <label for="amount">Amount in dispute (USD)</label>
-      <input id="amount" name="amount" type="number" min="0.01" step="0.01" value="100" required>
+      <input id="amount" name="amount" type="number" min="0.01" step="0.01" value="100">
       <p class="field-help">
         A good-faith estimate; Section 30.A requires a specific number. Many
         owners use the Section 28.d liability figure, the greater of 12
@@ -134,12 +136,21 @@ app.innerHTML = `
         In your own words: what happened and why you object. Your words, not
         ours. This is the part BMW's lawyers cannot call a form letter.
       </label>
-      <textarea id="personalStatement" name="personalStatement" rows="6" required></textarea>
+      <textarea id="personalStatement" name="personalStatement" rows="6"></textarea>
 
       <p style="margin-top: 1.5rem;">
         <button id="generate-btn" class="primary" type="submit">Generate notice PDF</button>
       </p>
     </form>
+
+    <div class="docx-download">
+      <h3>Or fill it in yourself, offline</h3>
+      <p>
+        Prefer not to type this here? Download the same letter as an
+        editable Word document and fill it in yourself, offline.
+      </p>
+      <button id="docx-btn" class="ghost" type="button">Download editable Word document (.docx)</button>
+    </div>
   </section>
 
   <section id="step-generate" hidden>
@@ -225,26 +236,24 @@ vinInput.addEventListener('input', () => {
 const form = document.getElementById('notice-form')
 const errorsBox = document.getElementById('form-errors')
 
+function readFormData() {
+  const data = Object.fromEntries(new FormData(form).entries())
+  data.vin = normalizeVin(data.vin)
+  return data
+}
+
 form.addEventListener('submit', async (event) => {
   event.preventDefault()
   errorsBox.innerHTML = ''
 
-  const data = Object.fromEntries(new FormData(form).entries())
-  data.vin = normalizeVin(data.vin)
+  const data = readFormData()
 
+  // Every field is optional: a blank one just prints as a line to fill in
+  // by hand, so only format is checked, never presence.
   const checks = [
-    requireField(data.fullName, 'Full name'),
-    requireField(data.street, 'Street address'),
-    requireField(data.city, 'City'),
-    requireField(data.addressState, 'State'),
-    requireField(data.zip, 'ZIP code'),
-    requireField(data.email, 'Email'),
-    requireField(data.phone, 'Phone'),
-    validateVin(data.vin),
-    validateAdDate(data.adDate),
-    requireField(data.residenceState, 'State of residence'),
-    validateAmount(data.amount),
-    requireField(data.personalStatement, 'Your personal statement')
+    validateVinIfPresent(data.vin),
+    validateAdDateIfPresent(data.adDate),
+    validateAmountIfPresent(data.amount)
   ].filter(Boolean)
 
   // The PDF is built with pdf-lib's standard fonts, which only support the
@@ -326,5 +335,55 @@ form.addEventListener('submit', async (event) => {
   } finally {
     generateBtn.disabled = false
     generateBtn.textContent = 'Generate notice PDF'
+  }
+})
+
+// No validation gate here on purpose: this is the escape hatch for anyone
+// who does not want to type anything into the browser at all. Whatever is
+// blank comes out as a blank line in the document, to fill in by hand.
+const docxBtn = document.getElementById('docx-btn')
+docxBtn.addEventListener('click', async () => {
+  const data = readFormData()
+
+  docxBtn.disabled = true
+  docxBtn.textContent = 'Building document...'
+
+  try {
+    // Lazy-loaded: the docx library is only worth downloading for the
+    // people who click this button, not everyone using the PDF flow.
+    const { generateNoticeDocx, noticeDocxFilename } = await import('./docx.js')
+    const blob = await generateNoticeDocx({
+      fullName: data.fullName.trim(),
+      street: data.street.trim(),
+      city: data.city.trim(),
+      addressState: data.addressState,
+      zip: data.zip.trim(),
+      email: data.email.trim(),
+      phone: data.phone.trim(),
+      vin: data.vin,
+      adDateValue: data.adDate,
+      ownership: data.ownership,
+      residenceStateName: data.residenceState,
+      amount: data.amount,
+      personalStatement: data.personalStatement.trim()
+    })
+
+    downloadBlob(
+      blob,
+      noticeDocxFilename(data.fullName),
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    )
+  } catch {
+    errorsBox.innerHTML = ''
+    const list = document.createElement('ul')
+    list.className = 'field-error'
+    const li = document.createElement('li')
+    li.textContent = 'Could not build the Word document. Try again.'
+    list.appendChild(li)
+    errorsBox.appendChild(list)
+    errorsBox.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  } finally {
+    docxBtn.disabled = false
+    docxBtn.textContent = 'Download editable Word document (.docx)'
   }
 })

@@ -67,6 +67,21 @@ export function validateAmount(value) {
   return null
 }
 
+// Every field in the form is optional (a blank one prints as a line to fill
+// in by hand). These wrap the validators above to skip the check entirely
+// on an empty value, while still enforcing format on whatever is typed.
+export function validateVinIfPresent(raw) {
+  return normalizeVin(raw) ? validateVin(raw) : null
+}
+
+export function validateAdDateIfPresent(value) {
+  return String(value || '').trim() ? validateAdDate(value) : null
+}
+
+export function validateAmountIfPresent(value) {
+  return String(value || '').trim() ? validateAmount(value) : null
+}
+
 // Characters pdf-lib's standard fonts (Helvetica/HelveticaBold, WinAnsi
 // encoding) can render. Anything outside this set (CJK, emoji, Vietnamese
 // or Turkish/Polish diacritics such as "e with circumflex + grave" or a

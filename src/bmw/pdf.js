@@ -1,7 +1,7 @@
 // Client-side PDF generation for the Section 30.A notice of dispute.
 // Everything happens in the browser. Nothing here makes a network call.
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib'
-import { formatLongDate, formatUsd, parseDateInput } from './validate.js'
+import { buildLetterModel, noticeFileStem } from './letter.js'
 
 const PAGE_WIDTH = 612 // 8.5in
 const PAGE_HEIGHT = 792 // 11in
@@ -111,24 +111,8 @@ class LetterWriter {
   }
 }
 
-function buildLetterText(data) {
-  const todayLong = formatLongDate(new Date())
-  const adDateLong = formatLongDate(parseDateInput(data.adDateValue))
-  const relationshipNoun = data.ownership === 'lease' ? 'Lessee' : 'Owner'
-  const relationshipVerb = data.ownership === 'lease' ? 'lease' : 'own'
-  const amountUsd = formatUsd(data.amount)
-
-  return {
-    todayLong,
-    adDateLong,
-    relationshipNoun,
-    relationshipVerb,
-    amountUsd
-  }
-}
-
 export async function generateNoticePdf(data) {
-  const derived = buildLetterText(data)
+  const letter = buildLetterModel(data)
   const pdfDoc = await PDFDocument.create()
   const font = await pdfDoc.embedFont(StandardFonts.Helvetica)
   const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold)
@@ -136,73 +120,32 @@ export async function generateNoticePdf(data) {
 
   const w = new LetterWriter(pdfDoc, font, boldFont)
 
-  w.text(derived.todayLong)
+  w.text(letter.todayLong)
   w.blank()
-  w.text('VIA USPS CERTIFIED MAIL, RETURN RECEIPT REQUESTED', { bold: true })
+  w.text(letter.certifiedLine, { bold: true })
   w.blank()
-  w.text('BMW of North America, LLC')
-  w.text('Attn: Customer Relations')
-  w.text('200 BMW Drive')
-  w.text('Woodcliff Lake, NJ 07677')
+  for (const line of letter.recipientLines) w.text(line)
   w.blank()
-  w.text('RE: NOTICE OF DISPUTE UNDER SECTION 30.A OF THE BMW CONNECTEDDRIVE TERMS (REV. 2026-01-01)', { bold: true })
+  w.text(letter.reLine, { bold: true })
   w.blank()
-  w.text('To BMW of North America, LLC:')
+  w.text(letter.salutation)
   w.blank()
-  w.paragraphBlock(
-    'I am a BMW owner and ConnectedDrive user. I submit this Notice of Dispute pursuant ' +
-    'to Section 30.A of the BMW ConnectedDrive Terms (Rev. 2026-01-01) (the "Terms"). ' +
-    'I am represented by no counsel and proceed individually.'
-  )
+  w.paragraphBlock(letter.intro)
 
-  w.heading('CLAIMANT IDENTITY')
-  w.text(`Name: ${data.fullName}`)
-  w.text(`Address: ${data.street}, ${data.city}, ${data.addressState} ${data.zip}`)
-  w.text(`Email: ${data.email}  Phone: ${data.phone}`)
-  w.text(`Vehicle Identification Number: ${data.vin}`)
-  w.text(`Vehicle relationship: ${derived.relationshipNoun}`)
+  w.heading(letter.claimantIdentity.heading)
+  for (const line of letter.claimantIdentity.lines) w.text(line)
 
-  w.heading('DESCRIPTION OF THE DISPUTE AND LEGAL CLAIMS')
-  w.paragraphBlock(
-    `On or about ${derived.adDateLong}, BMW NA delivered third-party promotional content (an ` +
-    'advertisement for the Sony Pictures film "Spider-Man: Brand New Day") to the ' +
-    'Control Display of my vehicle. Section 33 of the Terms governs dashboard ' +
-    'communications and authorizes messages concerning "Services, trials, expirations, ' +
-    'renewals, or other messages, as applicable," that is, matters related to the ' +
-    'Services. A third-party motion picture promotion is not such a matter. I am aware ' +
-    'that Section 31.c permits BMW NA to use collected information to "provide relevant ' +
-    'in-car or in-app information, businesses, locations, advertising, and other ' +
-    'purposes." That provision governs how BMW NA may use information it collects ' +
-    "about me; it does not enlarge Section 33's grant of authority over what may be " +
-    "displayed on the Control Display, and no provision of the Terms authorizes the " +
-    "use of my vehicle's primary control interface as a promotional surface for third " +
-    "parties. BMW's senior vice president for connected experience also stated " +
-    'publicly in December 2023 that BMW would not sell in-car screen space to play ' +
-    'a commercial, describing the car as a private space. Delivering third-party ' +
-    `promotional content to the primary control interface of a vehicle I ${derived.relationshipVerb} ` +
-    'therefore gives rise to the following ' +
-    'individual claims: (1) breach of contract, including breach of the implied covenant ' +
-    'of good faith and fair dealing, under the Terms; and (2) unlawful and deceptive ' +
-    'commercial practices under the New Jersey Consumer Fraud Act, N.J.S.A. 56:8-1 ' +
-    `et seq., and/or the consumer protection statute of my state of residence, ${data.residenceStateName}.`
-  )
+  w.heading(letter.dispute.heading)
+  w.paragraphBlock(letter.dispute.paragraph)
 
-  w.heading('STATEMENT IN MY OWN WORDS')
-  w.paragraphBlock(data.personalStatement)
+  w.heading(letter.statement.heading)
+  w.paragraphBlock(letter.statement.lines.join('\n'))
 
-  w.heading('GOOD-FAITH CALCULATION OF THE AMOUNT IN DISPUTE')
-  w.paragraphBlock(`${derived.amountUsd} USD, together with an end to the conduct described above.`)
+  w.heading(letter.amount.heading)
+  w.paragraphBlock(letter.amount.paragraph)
 
-  w.heading('REQUEST FOR PRE-ARBITRATION INFORMAL DISPUTE RESOLUTION')
-  w.paragraphBlock(
-    'Pursuant to Section 30.A, I request the individual Pre-Arbitration Informal Dispute ' +
-    'Resolution conference, by telephone or videoconference, within 30 days after your ' +
-    'receipt of this notice. I note that under Section 30.A this conference is individual ' +
-    'to me. Please contact me at the email or phone number above to schedule it. If the ' +
-    'claims described here are not resolved within 60 days after this notice is sent, ' +
-    'I reserve all rights under Section 30.A, including arbitration before the American ' +
-    'Arbitration Association and any right to proceed in small claims court.'
-  )
+  w.heading(letter.request.heading)
+  w.paragraphBlock(letter.request.paragraph)
 
   w.blank(2 * PARA_GAP)
   w.text('Signed,')
@@ -210,13 +153,16 @@ export async function generateNoticePdf(data) {
 
   // Script-style typed name standing in for a signature, sitting just above
   // its own signature line, with the printed name and a handwriting note below.
+  // A blank name has nothing to render in script, so it falls through to a
+  // plain signature line with a print-your-name note instead.
+  const hasName = String(data.fullName || '').trim() !== ''
   const sigSize = 22
   const sigLineGap = sigSize + 4
   // Wrap both the 22pt script name and the 11pt printed name the same way
   // every other line in this letter wraps (via wrapLine), so a long name
   // cannot run past the right margin instead of overflowing unbroken.
-  const sigNameLines = wrapLine(data.fullName, italicFont, sigSize, CONTENT_WIDTH)
-  const printedNameLines = wrapLine(data.fullName, font, BODY_SIZE, CONTENT_WIDTH)
+  const sigNameLines = hasName ? wrapLine(letter.signOffName, italicFont, sigSize, CONTENT_WIDTH) : []
+  const printedNameLines = wrapLine(letter.signOffName, font, BODY_SIZE, CONTENT_WIDTH)
   // True height consumed by the block below, computed from the actual
   // wrapped line counts (the way src/optout/main.js's paragraphHeight-based
   // reserve works) rather than a fixed constant: the script-style name
@@ -227,17 +173,21 @@ export async function generateNoticePdf(data) {
   // sign-by-hand note and date onto a fresh page away from the signature
   // line they belong to.
   const sigBlockHeight =
-    (sigNameLines.length - 1) * sigLineGap + (sigSize + 6) +
+    (hasName ? (sigNameLines.length - 1) * sigLineGap + (sigSize + 6) : sigSize + 6) +
     LINE_GAP +
     printedNameLines.length * LINE_GAP +
     LINE_GAP +
     4 +
     LINE_GAP
   w.ensureSpace(sigBlockHeight)
-  sigNameLines.forEach((line, i) => {
-    w.page.drawText(line, { x: MARGIN, y: w.y, size: sigSize, font: italicFont, color: INK })
-    w.y -= i === sigNameLines.length - 1 ? sigSize + 6 : sigLineGap
-  })
+  if (hasName) {
+    sigNameLines.forEach((line, i) => {
+      w.page.drawText(line, { x: MARGIN, y: w.y, size: sigSize, font: italicFont, color: INK })
+      w.y -= i === sigNameLines.length - 1 ? sigSize + 6 : sigLineGap
+    })
+  } else {
+    w.y -= sigSize + 6
+  }
   w.page.drawLine({
     start: { x: MARGIN, y: w.y },
     end: { x: MARGIN + 260, y: w.y },
@@ -245,18 +195,18 @@ export async function generateNoticePdf(data) {
     color: INK
   })
   w.y -= 14
-  w.text(data.fullName)
-  w.text('(sign by hand before mailing)', { size: 9 })
+  w.text(letter.signOffName)
+  w.text(
+    hasName ? '(sign by hand before mailing)' : '(sign and print your name by hand before mailing)',
+    { size: 9 }
+  )
   w.blank(4)
-  w.text(`Date: ${derived.todayLong}`)
+  w.text(`Date: ${letter.todayLong}`)
 
   const bytes = await pdfDoc.save()
   return bytes
 }
 
 export function noticeFilename(fullName) {
-  const parts = String(fullName || '').trim().split(/\s+/)
-  const last = parts.length ? parts[parts.length - 1] : 'notice'
-  const clean = last.toLowerCase().replace(/[^a-z0-9]/g, '') || 'notice'
-  return `notice-of-dispute-bmw-${clean}.pdf`
+  return `notice-of-dispute-bmw-${noticeFileStem(fullName)}.pdf`
 }

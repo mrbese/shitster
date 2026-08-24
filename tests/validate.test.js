@@ -3,8 +3,11 @@ import {
   findUnsupportedPdfChars,
   normalizeVin,
   validateAdDate,
+  validateAdDateIfPresent,
   validateAmount,
-  validateVin
+  validateAmountIfPresent,
+  validateVin,
+  validateVinIfPresent
 } from '../src/bmw/validate.js'
 
 describe('BMW form validation', () => {
@@ -29,5 +32,20 @@ describe('BMW form validation', () => {
   it('reports unsupported PDF characters without duplicate entries', () => {
     expect(findUnsupportedPdfChars('plain café text')).toEqual([])
     expect(findUnsupportedPdfChars('emoji 😀 and another 😀')).toEqual(['😀'])
+  })
+})
+
+describe('optional-field validators', () => {
+  it('skip validation entirely on a blank value', () => {
+    expect(validateVinIfPresent('')).toBeNull()
+    expect(validateVinIfPresent('   ')).toBeNull()
+    expect(validateAdDateIfPresent('')).toBeNull()
+    expect(validateAmountIfPresent('')).toBeNull()
+  })
+
+  it('still enforce format on whatever is typed', () => {
+    expect(validateVinIfPresent('too-short')).toContain('17 characters')
+    expect(validateAdDateIfPresent('2026-08-11')).toContain('between July 27 and August 10')
+    expect(validateAmountIfPresent('0')).toContain('greater than zero')
   })
 })
